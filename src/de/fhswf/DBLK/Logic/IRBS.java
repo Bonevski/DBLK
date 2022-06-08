@@ -1,4 +1,4 @@
 package DataManagement;
 
-public class Room {
+public interface IRBS {
 }

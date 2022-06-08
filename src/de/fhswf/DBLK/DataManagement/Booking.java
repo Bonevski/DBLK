@@ -1,4 +1,4 @@
 package DataManagement;
 
-public class User {
+public class Booking {
 }
