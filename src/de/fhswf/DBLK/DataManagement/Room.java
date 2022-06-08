@@ -1,6 +1,6 @@
-package DataManagement;
+package de.fhswf.DBLK.DataManagement;
 
-public class Room {
+public class Room implements IRoomPersistence{
 
     private String name;
     private int seats;

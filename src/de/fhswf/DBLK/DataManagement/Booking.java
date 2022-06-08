@@ -1,4 +1,4 @@
-package DataManagement;
+package de.fhswf.DBLK.DataManagement;
 
-public class Booking {
+public class Booking implements IBookingDB{
 }
