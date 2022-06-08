@@ -1,4 +1,4 @@
-package de.fhswf.DBLK;
+package Logic;
 
 public class RoomManager {
 }
