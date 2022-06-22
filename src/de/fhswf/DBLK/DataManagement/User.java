@@ -16,17 +16,23 @@ public class User implements IUserPersistence{
      * @param name
      * @param id
      * @param email
-     * @param password
-     * @param authCode
      */
-    public User(String name, int id, String email/*, String password, int authCode*/){
+    public User(String name, int id, String email){
         this.name = name;
         this.id = id;
         this.email = email;
-        //this.password = password;
-        //this.authCode = (int) Math.random() + 1;
+        this.authCode = newCode();
     }
 
+    static int newCode(){
+        String checkCode;
+        int pinCode;
+        do{
+            pinCode = (int) (Math.random() * 9999);
+             checkCode = "" + pinCode;
+        }while(checkCode.length() != 4);
+        return pinCode;
+    }
     /**
      * Gibt den anzulegenden User aus
      * (Kontrolle der Daten)
@@ -36,7 +42,7 @@ public class User implements IUserPersistence{
 
     }
     public static void main(String[] args){
-
+        System.out.println(newCode());
     }
 
 }
