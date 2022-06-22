@@ -33,6 +33,9 @@ public class User implements IUserPersistence{
         }while(checkCode.length() != 4);
         return pinCode;
     }
+
+
+
     /**
      * Gibt den anzulegenden User aus
      * (Kontrolle der Daten)

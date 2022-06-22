@@ -64,7 +64,7 @@ public class UserManager {
                 return;
             }
         }
-        System.out.println("Student wurde nicht gefunden!");
+        System.out.println("User wurde nicht gefunden!");
 
     }*/
 }
