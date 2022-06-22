@@ -1,15 +1,16 @@
 package de.fhswf.DBLK.DataManagement;
 
+
 /**
  * @author Sasha
  */
 public class User implements IUserPersistence{
 
-    String name;
-    int id;
-    String email;
-    String password;
-    int authCode;
+    private String name;
+    private int id;
+    private String email;
+    private String password;
+    private int authCode;
 
     /**
      * Konstruktor User
@@ -24,6 +25,12 @@ public class User implements IUserPersistence{
         this.authCode = newCode();
     }
 
+
+    /**
+     * Generiert einen 4-stelligen Code, welcher hier
+     * der Authentifizierungscode ist
+     * @return
+     */
     static int newCode(){
         String checkCode;
         int pinCode;
@@ -33,8 +40,6 @@ public class User implements IUserPersistence{
         }while(checkCode.length() != 4);
         return pinCode;
     }
-
-
 
     /**
      * Gibt den anzulegenden User aus

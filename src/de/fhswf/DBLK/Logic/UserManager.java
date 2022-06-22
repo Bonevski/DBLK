@@ -3,11 +3,12 @@ package de.fhswf.DBLK.Logic;
 import de.fhswf.DBLK.DataManagement.IUserPersistence;
 import de.fhswf.DBLK.DataManagement.User;
 
-public class UserManager {
+public class UserManager implements IRBS{
 
     private IUserPersistence[] users;
 
     UserManager(int size){
+
         users = new User[size];
     }
     /**
@@ -44,7 +45,7 @@ public class UserManager {
         if (firstFreeIndex == -1)
             System.out.println("Datenbank ist voll!");
         else
-            // Ansonsten genau an dieser Stelle einen neuen Student einfügen
+            // Ansonsten genau an dieser Stelle einen neuen User einfügen
             users[firstFreeIndex] = new User(name, id, email);
     }
 
@@ -55,7 +56,8 @@ public class UserManager {
      *
      * @param id
      */
-    /* void removeUser(int id) {
+    /*
+    void removeUser(int id) {
         for (int i = 0; i < users.length; i++) {
             // Auch hier die Überprüfung auf null, damit keine
             // NullPointerExceptions geworfen werden
@@ -65,7 +67,6 @@ public class UserManager {
             }
         }
         System.out.println("User wurde nicht gefunden!");
-
     }*/
 }
 
