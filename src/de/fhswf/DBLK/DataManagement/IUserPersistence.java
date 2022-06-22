@@ -5,6 +5,8 @@ package de.fhswf.DBLK.DataManagement;
  */
 public interface IUserPersistence {
 
-    static void getUser(String name){
+    static void getUser(String name, int id){
     }
+
+    void printMe();
 }
