@@ -6,19 +6,19 @@ package de.fhswf.DBLK.DataManagement;
  */
 public class UserDB implements IUserPersistence{
 
-    private String name;
+    private String username;
     private String email;
     private String password;
     //private int authCode;    // gedacht zur Authentifizierung per E-Mail
 
     /**
      * Konstruktor User
-     * @param name
+     * @param username
      * @param password
      * @param email
      */
-    public UserDB(String name, String password, String email){
-        this.name = name;
+    public UserDB(String username, String password, String email){
+        this.username = username;
         this.password = password;
         this.email = email;
         //this.authCode = newCode();
@@ -45,7 +45,7 @@ public class UserDB implements IUserPersistence{
      * (Kontrolle der Daten)
      */
     public void printMe(){
-        System.out.println("User: " + name + " | ID: " + password + " | Email: " + email);
+        System.out.println("User: " + username + " | ID: " + password + " | Email: " + email);
 
     }
     public static void main(String[] args){
@@ -53,12 +53,12 @@ public class UserDB implements IUserPersistence{
     }
 
     @Override
-    public UserDB getUser(String userName) {
+    public UserDB getUser(String username) {
         return null;
     }
 
     @Override
-    public String getPassword(UserDB userName) {
+    public String getPassword(UserDB username) {
         return null;
     }
 
