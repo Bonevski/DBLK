@@ -68,14 +68,14 @@ public class BookingManager implements IRBS {
      * @param email
      * @return
      */
-    public static String check(String password, String confirmPassword, String email) {
-       String ch = "";
+    public static boolean check(String password, String confirmPassword, String email) {
+       boolean check = false;
         if (password.equals(confirmPassword) && email.contains("@fh-swf.de")) {
-            ch = "Login successful";
+            check = true;
         } else {
-            ch = "Login failed";
+            check = false;
         }
-        return ch;
+        return check;
     }
 
     public static void main(String[] args) {
