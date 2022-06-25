@@ -18,11 +18,11 @@ public class BookingManager implements IRBS {
      * die Datenbank eingefügt. Wenn die DB voll ist, wird eine Fehlermeldung
      * ausgegeben
      *
-     * @param name
+     * @param username
      * @param id
      * @param email
      */
-    /*void addUser(String name, int id, String email) {
+    /*void addUser(String username, int id, String email) {
         int firstFreeIndex = -1;
         for (int i = 0; i < users.length; i++) {
             if (users[i] == null) {
@@ -37,7 +37,7 @@ public class BookingManager implements IRBS {
             System.out.println("Datenbank ist voll!");
         else
             // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            users[firstFreeIndex] = new UserDB(name, id, email);
+            users[firstFreeIndex] = new UserDB(username, id, email);
     }
 
     /**
@@ -79,6 +79,41 @@ public class BookingManager implements IRBS {
     }
 
     public static void main(String[] args) {
+
+    }
+
+    @Override
+    public String listAllRooms(Date date) {
+        return null;
+    }
+
+    @Override
+    public String bookRoom(Date date, String roomName, int timeBlock) {
+        return null;
+    }
+
+    @Override
+    public String cancelRoom(Date date, String roomName, int timeBlock) {
+        return null;
+    }
+
+    @Override
+    public String createAccount(String userName, String mail, String password) {
+        return null;
+    }
+
+    @Override
+    public void loginAccount(String userName, String password) {
+
+    }
+
+    @Override
+    public void createRoom(String roomName) {
+
+    }
+
+    @Override
+    public void deleteRoom(String roomName) {
 
     }
 }
