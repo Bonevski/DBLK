@@ -4,7 +4,7 @@ package de.fhswf.DBLK.DataManagement;
 /**
  * @author Sasha
  */
-public class User implements IUserPersistence{
+public class UserDB implements IUserPersistence{
 
     private String name;
     private int id;
@@ -18,7 +18,7 @@ public class User implements IUserPersistence{
      * @param id
      * @param email
      */
-    public User(String name, int id, String email){
+    public UserDB(String name, int id, String email){
         this.name = name;
         this.id = id;
         this.email = email;
