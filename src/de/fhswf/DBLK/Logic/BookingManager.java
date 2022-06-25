@@ -60,14 +60,22 @@ public class BookingManager implements IRBS {
         System.out.println("User wurde nicht gefunden!");
     }*/
 
-    public static String checkPW(String username, String password, String confirmPassword, String email) {
-       String check = "";
-        if (username.equals("" + username) && (password.equals(password)) && confirmPassword.equals(password) && email.contains("@fh-swf.de")) {
-            check = "Login successful";
+    /**
+     * Check ob Passwort eingabe identisch ist und ob
+     * es eine @fh-swf.de Mail ist
+     * @param password
+     * @param confirmPassword
+     * @param email
+     * @return
+     */
+    public static String check(String password, String confirmPassword, String email) {
+       String ch = "";
+        if (password.equals(confirmPassword) && email.contains("@fh-swf.de")) {
+            ch = "Login successful";
         } else {
-            check = "Login failed";
+            ch = "Login failed";
         }
-        return check;
+        return ch;
     }
 
     public static void main(String[] args) {

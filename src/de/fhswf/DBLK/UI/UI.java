@@ -1,11 +1,57 @@
 package de.fhswf.DBLK.UI;
 
+import de.fhswf.DBLK.Logic.BookingManager;
+
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
  * @author Sasha
  */
 public class UI {
+
+    /**
+     * User Login
+     */
+    void login() {
+        JTextField username = new JTextField();
+        JTextField password = new JPasswordField();
+        Object[] message = {"Username:", username, "Password:", password};
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            if (username.getText().equals("Bonevski") && password.getText().equals("h")) {
+                System.out.println("Login successful");
+            } else {
+                System.out.println("login failed");
+            }
+        } else {
+            System.out.println("Login canceled");
+        }
+    }
+
+    /**
+     * User wird hier erstellt
+     *
+     * @return
+     */
+    void createUser() {
+
+        JTextField username = new JTextField();
+        JPasswordField password = new JPasswordField();
+        JPasswordField confirmPassword = new JPasswordField();
+        JTextField email = new JTextField();
+
+        Object[] message = {"Username:", username, "Password:", password, "Confirm Password:", confirmPassword, "Email:", email};
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            BookingManager.check("" + password,
+                    "" + confirmPassword, "" + email);
+        } else {
+            System.out.println("Login canceled");
+        }
+    }
 
     public static void main(String[] args) {
 
