@@ -1,6 +1,5 @@
 package de.fhswf.DBLK.Logic;
 
-import de.fhswf.DBLK.DataManagement.IUserPersistence;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,31 +7,12 @@ import java.util.Date;
  * @author Sasha
  */
 
-public class BookingManager implements IRBS{
+public class BookingManager implements IRBS {
     protected Date[] days;
     protected ArrayList<Integer> planPerDay = new ArrayList<Integer>();
 
-    /**
-     * aus UserManager
-     * @param args
-     */
-    /*private IUserPersistence[] users;
 
-    UserManager(int size){
-
-        users = new UserDB[size];
-    }
-    /**
-     * Gibt alle User auf der konsole aus
-     */
-    /*void printMe() {
-        for (IUserPersistence u : users) {
-            // Felder im Array, die keinen Eintrag haben, werden ignoriert
-            if (u != null) {
-                u.printMe();
-            }
-        }
-    }
+   /*
     /**
      * Wenn Platz in der Datenbank ist, wird ein neuer User erzeugt und in
      * die Datenbank eingefügt. Wenn die DB voll ist, wird eine Fehlermeldung
@@ -79,7 +59,18 @@ public class BookingManager implements IRBS{
         }
         System.out.println("User wurde nicht gefunden!");
     }*/
-    public static void main(String[] args){
+
+    public static String checkPW(String username, String password, String confirmPassword, String email) {
+       String check = "";
+        if (username.equals("" + username) && (password.equals(password)) && confirmPassword.equals(password) && email.contains("@fh-swf.de")) {
+            check = "Login successful";
+        } else {
+            check = "Login failed";
+        }
+        return check;
+    }
+
+    public static void main(String[] args) {
 
     }
 
