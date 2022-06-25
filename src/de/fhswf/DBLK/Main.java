@@ -20,7 +20,7 @@ public class Main {
             if (username.getText().equals("Bonevski") && password.getText().equals("Test")) {
                 System.out.println("Login successful");
             } else {
-                System.out.println("login failed");
+                System.out.println("Login failed");
             }
         } else {
             System.out.println("Login canceled");
