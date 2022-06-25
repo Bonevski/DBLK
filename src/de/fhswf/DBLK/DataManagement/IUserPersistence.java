@@ -5,5 +5,7 @@ package de.fhswf.DBLK.DataManagement;
  */
 public interface IUserPersistence {
 
-    void printMe();
+public UserDB getUser (String userName);
+public String getPassword (UserDB userName);
+public void setPassword (String password);
 }
