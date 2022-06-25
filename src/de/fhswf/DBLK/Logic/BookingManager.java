@@ -82,4 +82,39 @@ public class BookingManager implements IRBS{
     public static void main(String[] args){
 
     }
+
+    @Override
+    public String listAllRooms(Date date) {
+        return null;
+    }
+
+    @Override
+    public String bookRoom(Date date, String roomName, int timeBlock) {
+        return null;
+    }
+
+    @Override
+    public String cancelRoom(Date date, String roomName, int timeBlock) {
+        return null;
+    }
+
+    @Override
+    public String createAccount(String userName, String mail, String password) {
+        return null;
+    }
+
+    @Override
+    public void loginAccount(String userName, String password) {
+
+    }
+
+    @Override
+    public void createRoom(String roomName) {
+
+    }
+
+    @Override
+    public void deleteRoom(String roomName) {
+
+    }
 }
