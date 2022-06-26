@@ -12,7 +12,6 @@ import de.fhswf.DBLK.DataManagement.UserDB;
 public class User {
 
     private String username;
-    private int id;
     private String email;
     private String password;
     private int authCode;
@@ -20,12 +19,12 @@ public class User {
     /**
      * Konstruktor User
      * @param username
-     * @param id
+     * @param password
      * @param email
      */
-    public User(String username, int id, String email){
+    public User(String username, String password, String email){
         this.username = username;
-        this.id = id;
+        this.password = password;
         this.email = email;
         this.authCode = newCode();
     }
@@ -68,11 +67,15 @@ public class User {
      * Gibt den anzulegenden User aus
      */
     public void printMe() {
-        System.out.println("Name: " + username + " | ID: " + id + " | Email: " + email);
+        System.out.println("Name: " + username + " | Passwort: " + password + " | Email: " + email);
     }
 
+    /**
+     * Debugging
+     * @param args
+     */
     public static void main(String[] args){
-        User user = new User("Bonevski", 30153215, "Bonevski.sasha@fh-swf.de");
+        User user = new User("Bonevski", "Test", "Bonevski.sasha@fh-swf.de");
         user.printMe();
     }
 }
