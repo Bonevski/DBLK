@@ -1,55 +1,83 @@
 package de.fhswf.DBLK.DataManagement;
 
+import de.fhswf.DBLK.Bin.User;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Iterator;
+
 
 /**
  * @author Sasha
  */
 public class UserDB implements IUserPersistence{
 
-    private String username;
-    private String email;
-    private String password;
-    //private int authCode;    // gedacht zur Authentifizierung per E-Mail
+    private ArrayList<User> users;
+
+    //Erzeugung eines neuen Objektes
+    Scanner sc;
 
     /**
      * Konstruktor User
-     * @param username
-     * @param password
-     * @param email
+     * (Erzeugt eine leere Liste von Usern)
      */
-    public UserDB(String username, String password, String email){
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        //this.authCode = newCode();
+    public UserDB(){
+        this.users = new ArrayList<User>();
+        sc = new Scanner(System.in);
     }
 
+    /**
+     * Fügt einen neuen User der Liste hinzu
+     * @param newUser
+     */
+    void addUser(User newUser){
+        // überprüfen, ob der Username schon existiert (Doppeluser
+        // verhindern)
+        if(this.users.contains(newUser)) {
+            // Exception (Fehler) werfen, wenn der Usernamen schon existiert
+            throw new IllegalArgumentException("Der User ist bereits registriert!");
+        }
+        this.users.add(newUser);
+    }
 
     /**
-     * Generiert einen 4-stelligen Code, welcher hier
-     * der Authentifizierungscode ist
-     * @return
+     * Entfernt ein User aus der Liste. (entfernt alle User, die den
+     * jeweiligen Namen haben)
+     * @param username
      */
-    static int newCode(){
-        String checkCode;
-        int pinCode;
-        do{
-            pinCode = (int) (Math.random() * 9999);
-             checkCode = "" + pinCode;
-        }while(checkCode.length() != 4);
-        return pinCode;
+    public void removeUser(String username) {
+        User user;
+        // Iterator um die ArrayList zu durchlaufen
+        // Zeiger der die Elemente einer Menge durchläuft
+        Iterator<User> iter = this.users.iterator();
+        // solange es noch Elemente in der ArrayList gibt...
+        while (iter.hasNext()) {
+            // ...sich den nächsten Eintrag nehmen...
+            user = iter.next();
+
+            // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
+            if(user.getUsername().equals(username)) {
+                // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
+                iter.remove();
+            } // if
+        } // while
     }
 
     /**
      * Gibt den anzulegenden User aus
      * (Kontrolle der Daten)
      */
-    public void printMe(){
-        System.out.println("User: " + username + " | ID: " + password + " | Email: " + email);
-
+    void printMe() {
+        for (User u : users) {
+            // Felder im Array, die keinen Eintrag haben, werden ignoriert
+            if (u != null) {
+                u.printMe();
+            }
+        }
     }
+
     public static void main(String[] args){
-        System.out.println(newCode());
+        System.out.println(User.newCode());
     }
 
     @Override

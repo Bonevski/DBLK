@@ -13,8 +13,8 @@ public class UI {
     /**
      * User Login
      */
-    static boolean login() {
-        boolean check = false;
+    static String login() {
+        String str = "";
         JTextField username = new JTextField();
         JTextField password = new JPasswordField();
         Object[] message = {"Username:", username, "Password:", password};
@@ -23,15 +23,15 @@ public class UI {
         if (option == JOptionPane.OK_OPTION) {
             if (username.getText().equals("Bonevski") && password.getText().equals("Test")) {
                 // Login successful
-                check = true;
+                str = "Login successful!";
             } else {
                 // Login failed
-                check = false;
+                str = "Login failed!";
             }
         } else {
-            System.out.println("Login canceled");
+            str = "Login canceled!";
         }
-        return check;
+        return str;
     }
 
     /**
@@ -39,8 +39,8 @@ public class UI {
      *
      * @return
      */
-    static boolean createUser() {
-        boolean check = false;
+    static void createUser() {
+
         JTextField username = new JTextField();
         JPasswordField password = new JPasswordField();
         JPasswordField confirmPassword = new JPasswordField();
@@ -55,7 +55,6 @@ public class UI {
         } else {
             System.out.println("Login canceled");
         }
-        return check;
     }
 
     public static void main(String[] args) {
@@ -74,70 +73,66 @@ public class UI {
          */
         switch (log) {
             case 1:
-                if (login() == true) {
-                    System.out.println("Bitte wähle ein Punkt aus:");
-                    System.out.println("1 für Raum anzeigen");
-                    System.out.println("2 für Raum buchen");
-                    System.out.println("3 für Raum stornieren");
-                    int var = Integer.parseInt(sc.nextLine());
+                login();
+                System.out.println("Bitte wähle ein Punkt aus:");
+                System.out.println("1 für Raum anzeigen");
+                System.out.println("2 für Raum buchen");
+                System.out.println("3 für Raum stornieren");
+                int var = Integer.parseInt(sc.nextLine());
 
-                    /**
-                     * Switch-Case für die Auswahl
-                     */
-                    switch (var) {
-                        case 1:
-                            System.out.println("Raum anzeigen:");
-                            // Methode Raumanzeigen aufrufen
-                            break;
-                        case 2:
-                            System.out.println("Raum buchen:");
-                            // Methode Raumbuchen aufrufen
-                            break;
-                        case 3:
-                            System.out.println("Raum stornieren:");
-                            // Methode Raumstornierung aufrufen
-                            break;
-                        default:
-                            System.out.println("Keine gültige Auswahl (1, 2, 3) getroffen.");
-                    }
-                    break;
-                } else {
-                    System.out.println("Try Again");
-                }
                 /**
-                 * Switch-Case für User erstellen
+                 * Switch-Case für die Auswahl
                  */
-            case 2:
-                if (createUser() == true) {
-                    System.out.println("Bitte wähle ein Punkt aus:");
-                    System.out.println("1 für Raum anzeigen");
-                    System.out.println("2 für Raum buchen");
-                    System.out.println("3 für Raum stornieren");
-                    int var = Integer.parseInt(sc.nextLine());
-
-                    /**
-                     * Switch-Case für die Auswahl
-                     */
-                    switch (var) {
-                        case 1:
-                            System.out.println("Raum anzeigen:");
-                            // Methode Raumanzeigen aufrufen
-                            break;
-                        case 2:
-                            System.out.println("Raum buchen:");
-                            // Methode Raumbuchen aufrufen
-                            break;
-                        case 3:
-                            System.out.println("Raum stornieren:");
-                            // Methode Raumstornierung aufrufen
-                            break;
-                        default:
-                            System.out.println("Keine gültige Auswahl (1, 2, 3) getroffen.");
-                    }
-                    break;
-                } else {
-                    System.out.println("Try Again");
+                switch (var) {
+                    case 1:
+                        System.out.println("Raum anzeigen:");
+                        // Methode Raumanzeigen aufrufen
+                        break;
+                    case 2:
+                        System.out.println("Raum buchen:");
+                        // Methode Raumbuchen aufrufen
+                        break;
+                    case 3:
+                        System.out.println("Raum stornieren:");
+                        // Methode Raumstornierung aufrufen
+                        break;
+                    default:
+                        System.out.println("Keine gültige Auswahl (1, 2, 3) getroffen.");
                 }
+                break;
+
+            /**
+             * Switch-Case für User erstellen
+             */
+            case 2:
+                createUser();
+                System.out.println("Bitte wähle ein Punkt aus:");
+                System.out.println("1 für Raum anzeigen");
+                System.out.println("2 für Raum buchen");
+                System.out.println("3 für Raum stornieren");
+                var = Integer.parseInt(sc.nextLine());
+
+                /**
+                 * Switch-Case für die Auswahl
+                 */
+                switch (var) {
+                    case 1:
+                        System.out.println("Raum anzeigen:");
+                        // Methode Raumanzeigen aufrufen
+                        break;
+                    case 2:
+                        System.out.println("Raum buchen:");
+                        // Methode Raumbuchen aufrufen
+                        break;
+                    case 3:
+                        System.out.println("Raum stornieren:");
+                        // Methode Raumstornierung aufrufen
+                        break;
+                    default:
+                        System.out.println("Keine gültige Auswahl (1, 2, 3) getroffen.");
+                }
+                break;
         }
+
     }
 }
