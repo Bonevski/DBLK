@@ -14,6 +14,7 @@ public class User {
     private String email;
     private String password;
     private int authCode;
+    private boolean role; //Admin oder User
 
     /**
      * Konstruktor User
@@ -67,6 +68,20 @@ public class User {
      */
     public void printMe() {
         System.out.println("Username: " + username + " | Passwort: " + password + " | Email: " + email);
+    }
+
+    /**
+     * Überprüfung ob Admin oder nicht
+     * @param role
+     * @return
+     */
+    boolean checkAdmin(boolean role){
+        if(role == true){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
