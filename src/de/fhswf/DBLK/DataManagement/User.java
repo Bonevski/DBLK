@@ -1,6 +1,5 @@
-package de.fhswf.DBLK.Bin;
+package de.fhswf.DBLK.DataManagement;
 
-import de.fhswf.DBLK.DataManagement.UserDB;
 
 /**
  * @author Sasha
@@ -67,7 +66,7 @@ public class User {
      * Gibt den anzulegenden User aus
      */
     public void printMe() {
-        System.out.println("Name: " + username + " | Passwort: " + password + " | Email: " + email);
+        System.out.println("Username: " + username + " | Passwort: " + password + " | Email: " + email);
     }
 
     /**

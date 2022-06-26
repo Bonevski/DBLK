@@ -1,7 +1,5 @@
 package de.fhswf.DBLK.DataManagement;
 
-import de.fhswf.DBLK.Bin.User;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
@@ -14,7 +12,9 @@ public class UserDB implements IUserPersistence{
 
     private ArrayList<User> users;
 
-    //Erzeugung eines neuen Objektes
+    /**
+     * Erzeugung eines neuen Objektes
+     */
     Scanner sc;
 
     /**
@@ -30,7 +30,7 @@ public class UserDB implements IUserPersistence{
      * Fügt einen neuen User der Liste hinzu
      * @param newUser
      */
-    void addUser(User newUser){
+    public void addUser(User newUser){
         // überprüfen, ob der Username schon existiert (Doppeluser
         // verhindern)
         if(this.users.contains(newUser)) {
@@ -54,20 +54,19 @@ public class UserDB implements IUserPersistence{
         while (iter.hasNext()) {
             // ...sich den nächsten Eintrag nehmen...
             user = iter.next();
-
             // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
             if(user.getUsername().equals(username)) {
                 // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
                 iter.remove();
-            } // if
-        } // while
+            }
+        }
     }
 
     /**
      * Gibt den anzulegenden User aus
      * (Kontrolle der Daten)
      */
-    void printMe() {
+    public void printMe() {
         for (User u : users) {
             // Felder im Array, die keinen Eintrag haben, werden ignoriert
             if (u != null) {
@@ -78,20 +77,5 @@ public class UserDB implements IUserPersistence{
 
     public static void main(String[] args){
         System.out.println(User.newCode());
-    }
-
-    @Override
-    public UserDB getUser(String username) {
-        return null;
-    }
-
-    @Override
-    public String getPassword(UserDB username) {
-        return null;
-    }
-
-    @Override
-    public void setPassword(String password) {
-
     }
 }
