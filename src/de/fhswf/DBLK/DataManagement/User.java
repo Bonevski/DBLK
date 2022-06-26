@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String password;
     private int authCode;
-    private boolean role; //Admin oder User
+    private String role; //Admin oder User
 
     /**
      * Konstruktor User
@@ -72,11 +72,11 @@ public class User {
 
     /**
      * Überprüfung ob Admin oder nicht
-     * @param role
+     * @param username
      * @return
      */
-    boolean checkAdmin(boolean role){
-        if(role == true){
+    public static boolean checkAdmin(String username){
+        if(username.contains("A_")){
             return true;
         }
         else {

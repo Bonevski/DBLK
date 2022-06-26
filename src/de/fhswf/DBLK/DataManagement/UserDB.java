@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Iterator;
 
+import static de.fhswf.DBLK.DataManagement.User.checkAdmin;
+
 
 /**
  * @author Sasha
@@ -46,20 +48,24 @@ public class UserDB implements IUserPersistence{
      * @param username
      */
     public void removeUser(String username) {
-        User user;
-        // Iterator um die ArrayList zu durchlaufen
-        // Zeiger der die Elemente einer Menge durchläuft
-        Iterator<User> iter = this.users.iterator();
-        // solange es noch Elemente in der ArrayList gibt...
-        while (iter.hasNext()) {
-            // ...sich den nächsten Eintrag nehmen...
-            user = iter.next();
-            // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
-            if(user.getUsername().equals(username)) {
-                // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
-                iter.remove();
+        //if(checkAdmin(username) == true) {
+            User user;
+            // Iterator um die ArrayList zu durchlaufen
+            // Zeiger der die Elemente einer Menge durchläuft
+            Iterator<User> iter = this.users.iterator();
+            // solange es noch Elemente in der ArrayList gibt...
+            while (iter.hasNext()) {
+                // ...sich den nächsten Eintrag nehmen...
+                user = iter.next();
+                // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
+                if (user.getUsername().equals(username)) {
+                    // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
+                    iter.remove();
+                }
             }
-        }
+        //}else{
+        //    System.out.println("No Permissions!");
+        //}
     }
 
     /**
@@ -74,6 +80,8 @@ public class UserDB implements IUserPersistence{
             }
         }
     }
+
+
 
     public static void main(String[] args){
         System.out.println(User.newCode());

@@ -13,6 +13,7 @@ public class Test {
 
     /**
      * Debugging
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -27,10 +28,11 @@ public class Test {
         // Benennung der Eingabefelder
         Object[] message = {"Username:", username, "Password:", password, "Email:", email};
 
-        /**
-         * Beispiel durchlauf um i<2 User zu erstellen
-         */
+
+        //Beispiel durchlauf um i<2 User zu erstellen
         for (int i = 0; i < 2; i++) {
+            // Emailvoragbe  "@fh-swf.de"
+            email.setText("@fh-swf.de");
 
             int option = JOptionPane.showConfirmDialog(null, message, "Create User", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
@@ -39,7 +41,9 @@ public class Test {
                 db.addUser(new User(username.getText(), password.getText(), email.getText()));
 
             }
-
+            // Textfelder = Empty
+            username.setText("");
+            password.setText("");
         }
 
         System.out.println("=======DEBUGGING=======");
@@ -53,7 +57,7 @@ public class Test {
         JTextField username2 = new JTextField(); // Eingabefeld für Username2
 
         Object[] message2 = {"Username:", username2}; // Benennung
-        int option = JOptionPane.showConfirmDialog(null, message2, "Remove User", JOptionPane.OK_CANCEL_OPTION);
+        int option = JOptionPane.showConfirmDialog(null, message2, "Remove User", JOptionPane.OK_OPTION);
 
 
         db.removeUser(username2.getText()); // User (mit dem Usernamen2) wird aus der DB entfernt
