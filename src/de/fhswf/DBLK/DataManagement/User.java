@@ -1,6 +1,5 @@
-package de.fhswf.DBLK.Bin;
+package de.fhswf.DBLK.DataManagement;
 
-import de.fhswf.DBLK.DataManagement.UserDB;
 
 /**
  * @author Sasha
@@ -15,6 +14,7 @@ public class User {
     private String email;
     private String password;
     private int authCode;
+    private String role; //Admin oder User
 
     /**
      * Konstruktor User
@@ -67,7 +67,21 @@ public class User {
      * Gibt den anzulegenden User aus
      */
     public void printMe() {
-        System.out.println("Name: " + username + " | Passwort: " + password + " | Email: " + email);
+        System.out.println("Username: " + username + " | Passwort: " + password + " | Email: " + email);
+    }
+
+    /**
+     * Überprüfung ob Admin oder nicht
+     * @param username
+     * @return
+     */
+    public static boolean checkAdmin(String username){
+        if(username.contains("A_")){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
