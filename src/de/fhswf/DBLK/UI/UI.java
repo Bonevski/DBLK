@@ -19,6 +19,7 @@ public class UI {
         JTextField password = new JPasswordField();
         Object[] message = {"Username:", username, "Password:", password};
 
+
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             if (username.getText().equals("Bonevski") && password.getText().equals("Test")) {
@@ -48,6 +49,11 @@ public class UI {
 
         Object[] message = {"Username:", username, "Password:", password, "Confirm Password:", confirmPassword, "Email:", email};
 
+        // Emailvoragbe  "@fh-swf.de"
+        email.setText("@fh-swf.de");
+        // Textfelder = Empty
+        username.setText("");
+        password.setText("");
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             BookingManager.check("" + password,
@@ -55,6 +61,7 @@ public class UI {
         } else {
             System.out.println("Login canceled");
         }
+
     }
 
     public static void main(String[] args) {
