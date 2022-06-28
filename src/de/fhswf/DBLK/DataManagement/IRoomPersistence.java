@@ -7,13 +7,8 @@ public interface IRoomPersistence {
 
 
 //Methods
+public void addRoom(Room newRoom);
 public void deleteRoom (String roomName);
-
-/* not needed:
-public RoomDB getRoom (String roomName);
-public void setRoom (String roomName);
- */
-
-public  ArrayList getRoomList();
+public ArrayList getRoomList();  // possible not usable like this
 
 }
