@@ -6,11 +6,18 @@ package de.fhswf.DBLK.DataManagement;
  */
 
 
+// to  write object to file, must be implemented in class
+import java.io.Serializable;
+
+
+
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class RoomDB implements IRoomPersistence {
+public class RoomDB implements IRoomPersistence, Serializable {
 
 
     /**
@@ -23,7 +30,7 @@ public class RoomDB implements IRoomPersistence {
 
 
     /**
-     * construcor roomList
+     * constructor roomList
      * (creates empty list of rooms)
      */
     public RoomDB() {
@@ -75,12 +82,12 @@ public class RoomDB implements IRoomPersistence {
         //}else{
         //    System.out.println("No Permissions!");
         //}
-
     }
 
+
     /**
-     * returns created room
-     * (Kontrolle der Daten)
+     * returns created room   //toString alternative?
+     * (data control)
      */
     public void printMe() {
         for (Room u : roomList) {
@@ -99,4 +106,8 @@ public class RoomDB implements IRoomPersistence {
     public ArrayList getRoomList() {
         return roomList;
     }
-}
+
+
+
+
+}///class

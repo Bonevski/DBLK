@@ -4,6 +4,11 @@ package de.fhswf.DBLK.DataManagement;
  * @author Christoph
  */
 
+//file save
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class Room {
 
 
@@ -38,5 +43,15 @@ public class Room {
 
     public void printMe() {
         System.out.println("Raum: " + roomName);
+    }
+
+    /**
+     * only for TestStoreLoadFiles
+     * delete if issue resolved
+     */
+
+@Override
+    public String toString() {
+        return ("Name: " + roomName);
     }
 }
