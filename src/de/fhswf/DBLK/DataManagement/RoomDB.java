@@ -6,18 +6,12 @@ package de.fhswf.DBLK.DataManagement;
  */
 
 
-// to  write object to file, must be implemented in class
-import java.io.Serializable;
-
-
-
-
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class RoomDB implements IRoomPersistence, Serializable {
+public class RoomDB implements IRoomPersistence {
 
 
     /**
@@ -110,4 +104,4 @@ public class RoomDB implements IRoomPersistence, Serializable {
 
 
 
-}///class
+}//class
