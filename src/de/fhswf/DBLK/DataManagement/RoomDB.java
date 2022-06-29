@@ -2,60 +2,66 @@ package de.fhswf.DBLK.DataManagement;
 
 /**
  * @author Christoph
+ * lot of code taken from Sasha and refactored
  */
+
 
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class RoomDB implements IRoomPersistence {
 
-    public String roomName;
-    // protected String[] rooms;  // not needed --> ArrayList
-
-
-    //create list of rooms
-    public ArrayList<RoomDB> roomList = new ArrayList<RoomDB>();
-
-    public RoomDB(String roomName) {
-        this.roomName = roomName;
-    }
 
     /**
-     * Fügt einen neuen Rom der roomList hinzu
+     * variables
+     */
+    //create ArrayList of rooms
+    private ArrayList<Room> roomList;
+    // protected String[] rooms;  // not needed --> we will use an ArrayList
+    Scanner sc;
+
+
+    /**
+     * constructor roomList
+     * (creates empty list of rooms)
+     */
+    public RoomDB() {
+        this.roomList = new ArrayList<Room>();
+        sc = new Scanner(System.in);
+    }
+
+
+    /**
+     * adds existing room to roomList
+     *
      * @param newRoom
      */
-    void addRoom(RoomDB newRoom){
-        // überprüfen, ob der Raum schon existiert
-        if(this.roomList.contains(newRoom)) {
-            // Exception (Fehler) werfen, wenn der Usernamen schon existiert
-            throw new IllegalArgumentException("Der User ist bereits registriert!");
+    @Override
+    public void addRoom(Room newRoom) {
+        // check, if room already exists
+        if (this.roomList.contains(newRoom)) {
+            // throw Exception, if room does already exist
+            throw new IllegalArgumentException("Der Raum exisitiert bereits!");
         }
         this.roomList.add(newRoom);
     }
 
 
-
-    /*
-        @Override
-        public void deleteRoom(String roomName) {
-
-
-            roomList.remove(roomName);
-            // delete object? overwrite with null und run  System.gc() <-- not recommended and does leave open space in  ArrayList
-        }
-    */
-
-    public String getRoomName(){
-        return roomName;
-    }
+    /**
+     * deletes room from room list.
+     *
+     * @param roomName
+     */
 
     @Override
     public void deleteRoom(String roomName) {
-        RoomDB room;
+        //if(checkAdmin(username) == true) {
+        Room room;
         // Iterator um die ArrayList zu durchlaufen
         // Zeiger der die Elemente einer Menge durchläuft
-        Iterator<RoomDB> iter = this.roomList.iterator();
+        Iterator<Room> iter = this.roomList.iterator();
         // solange es noch Elemente in der ArrayList gibt...
         while (iter.hasNext()) {
             // ...sich den nächsten Eintrag nehmen...
@@ -67,26 +73,35 @@ public class RoomDB implements IRoomPersistence {
                 iter.remove();
             } // if
         } // while
+        //}else{
+        //    System.out.println("No Permissions!");
+        //}
     }
 
 
-
-/* not needed
-    @Override
-    public RoomDB getRoom(String roomName) {
-        return null;
+    /**
+     * returns created room   //toString alternative?
+     * (data control)
+     */
+    public void printMe() {
+        for (Room u : roomList) {
+            // Felder im Array, die keinen Eintrag haben, werden ignoriert
+            if (u != null) {
+                u.printMe();
+            }
+        }
     }
-
-    @Override
-    public void setRoom(String roomName) {
-    }
-*/
 
 
     /**
      * access to roomList from interface
      */
+    @Override
     public ArrayList getRoomList() {
         return roomList;
     }
-}
+
+
+
+
+}//class
