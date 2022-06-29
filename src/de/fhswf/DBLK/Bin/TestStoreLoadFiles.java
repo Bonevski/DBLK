@@ -1,5 +1,7 @@
 package de.fhswf.DBLK.Bin;
 
+
+
 import de.fhswf.DBLK.DataManagement.Room;
 import de.fhswf.DBLK.DataManagement.RoomDB;
 
@@ -18,6 +20,11 @@ import java.io.ObjectInputStream;
 
 
 public class TestStoreLoadFiles {
+
+    /**
+     * @author Christoph
+     */
+
 
     /**
      * write object to file
@@ -62,7 +69,7 @@ public class TestStoreLoadFiles {
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-        } catch (IOException e) {
+        } catch (IOException e) {  //error here
             System.out.println("Error initializing stream");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
