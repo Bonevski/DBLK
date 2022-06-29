@@ -5,16 +5,18 @@ package de.fhswf.DBLK.DataManagement;
  * @author Sasha
  */
 
+import java.util.ArrayList;
+
 /**
  * Klasse für ein User
  */
-public class User {
+public class User implements IUserPersistence{
 
-    private String username;
-    private String email;
-    private String password;
+    private static String username;
+    private static String email;
+    private static String password;
     private int authCode;
-    private String role; //Admin oder User
+    private static String role; //Admin oder User
 
     /**
      * Konstruktor User
@@ -26,26 +28,31 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.authCode = newCode();
+    //    this.authCode = newCode();
     }
 
     /**
      * Getter/Setter
      */
     public String getUsername(){
-        return username;
+        return this.username;
     }
 
     String getEmail(){
-        return email;
+        return this.email;
     }
 
-    String getPassword(){
-        return password;
+    public String getPassword(){
+        return this.password;
     }
 
-    String setPassword(String password){
-        return password;
+    @Override
+    public ArrayList<User> getUsers() {
+        return null;
+    }
+
+    void setPassword(String password){
+        this.password = password;
     }
 
     /**
@@ -66,8 +73,8 @@ public class User {
     /**
      * Gibt den anzulegenden User aus
      */
-    public void printMe() {
-        System.out.println("Username: " + username + " | Passwort: " + password + " | Email: " + email);
+    public String toString() {
+        return "Username: " + username + " | Passwort: " + password + " | Email: " + email;
     }
 
     /**
@@ -90,6 +97,11 @@ public class User {
      */
     public static void main(String[] args){
         User user = new User("Bonevski", "Test", "Bonevski.sasha@fh-swf.de");
-        user.printMe();
+        user.toString();
+    }
+
+    @Override
+    public void addUser(User newUser) {
+
     }
 }
