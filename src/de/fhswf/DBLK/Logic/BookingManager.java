@@ -19,6 +19,104 @@ public class BookingManager implements IRBS {
 
 
     /**
+     * Password check if password is valid or not
+     * Passwort muss 8-15 Zeichen lang sein, Groß- und Kleinbuchstaben
+     * Passwort muss eine Zahl beinhalten
+     * Passwort darf nicht " " sein
+     *
+     * @param password
+     * @return
+     */
+    public static boolean isValid(String password) {
+
+        // for checking if password length
+        // is between 8 and 15
+        if (!((password.length() >= 8)
+                && (password.length() <= 15))) {
+            return false;
+        }
+
+        // to check space
+        if (password.contains(" ")) {
+            return false;
+        }
+        if (true) {
+            int count = 0;
+
+            // check digits from 0 to 9
+            for (int i = 0; i <= 9; i++) {
+
+                // to convert int to string
+                String str1 = Integer.toString(i);
+
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+        /*
+        // Funktioniert  nicht wie ich es möchte!!
+        // for special characters
+        if (!(password.contains("@") || password.contains("#")
+                || password.contains("!") || password.contains("~")
+                || password.contains("$") || password.contains("%")
+                || password.contains("^") || password.contains("&")
+                || password.contains("*") || password.contains("(")
+                || password.contains(")") || password.contains("-")
+                || password.contains("+") || password.contains("/")
+                || password.contains(":") || password.contains(".")
+                || password.contains(", ") || password.contains("<")
+                || password.contains(">") || password.contains("?")
+                || password.contains("|"))) {
+            return false;
+        }
+        */
+        if (true) {
+            int count = 0;
+
+            // checking capital letters
+            for (int i = 65; i <= 90; i++) {
+
+                // type casting
+                char c = (char) i;
+
+                String str1 = Character.toString(c);
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+
+        if (true) {
+            int count = 0;
+
+            // checking small letters
+            for (int i = 97; i <= 122; i++) {
+
+                // type casting
+                char c = (char) i;
+                String str1 = Character.toString(c);
+
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+
+        // if all conditions fails
+        return true;
+    }
+
+    /**
      * User Login
      */
     public static void login() {
@@ -30,7 +128,7 @@ public class BookingManager implements IRBS {
 
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
-            if (!username.getText().isEmpty() && password.getText().equals(users.getPassword())) {
+            if (isValid(password.getText())) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
             } else {
                 JOptionPane.showMessageDialog(null, "Login failed!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -47,7 +145,7 @@ public class BookingManager implements IRBS {
      */
     /*
      Fehler: Nach erfolgreichem User erstellen und aufrufen von mainMenue()
-     kommt nach drücken des Cancel Buttons trotzdem subMenue()
+     kommt nach drücken des Cancel Buttons trotzdem Fehler
      */
     public static void createUser() {
 
@@ -68,23 +166,29 @@ public class BookingManager implements IRBS {
 
         if (option == JOptionPane.OK_OPTION) {
 
-            // Passwörter check ob es empty ist und übereinstimmt
-            if (password.getText().isEmpty() || !password.getText().equals(confirmPassword.getText())) {
-                JOptionPane.showMessageDialog(null, "Passwords don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                createUser();
-            } else {
-                // Email überprüfen ob @fh-swf.de enthalten ist und mehr als 10 Zeichen
-                if (email.getText().length() > 10 && email.getText().contains("@fh-swf.de")) {
-                    JOptionPane.showMessageDialog(null, "User was created");
-                    // User in die DB einfügen
-                    db.addUser(new User(username.getText(), password.getText(), email.getText()));
-                    // Testausgabe ob der User angelegt wurde
-                    db.toString();
-                    mainMenue();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Wrong email!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            // Check ob Anforderungen erfüllt werden
+            if (isValid(password.getText())) {
+                // Passwörter check ob es empty ist und übereinstimmt
+                if ((password.getText().isEmpty() || !password.getText().equals(confirmPassword.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Passwords don't match!", "ERROR", JOptionPane.ERROR_MESSAGE);
                     createUser();
+                } else {
+                    // Email überprüfen ob @fh-swf.de enthalten ist und mehr als 10 Zeichen
+                    if (email.getText().length() > 10 && email.getText().contains("@fh-swf.de")) {
+                        JOptionPane.showMessageDialog(null, "User was created");
+                        // User in die DB einfügen
+                        db.addUser(new User(username.getText(), password.getText(), email.getText()));
+                        // Testausgabe ob der User angelegt wurde
+                        System.out.println(db.toString());
+                        mainMenue();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Wrong email!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        createUser();
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Requirements not fullfilled!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                createUser();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Creating User canceled", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -116,7 +220,7 @@ public class BookingManager implements IRBS {
     }
 
     /**
-     * Hauptemnü erstellt
+     * Hauptmenü erstellt
      * Auswahl zwischen User erstellen und Login
      */
     public static void mainMenue() {
@@ -143,9 +247,8 @@ public class BookingManager implements IRBS {
     public static void main(String[] args) {
         //mainMenue();
         //subMenue();
-        login();
-        //createUser();
-
+        //login();
+        createUser();
 
 
     }
