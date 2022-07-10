@@ -51,7 +51,7 @@ public class UserDB implements IUserPersistence {
         // Wenn firstFreeIndex immernoch -1 ist, wurde kein freies Feld
         // gefunden -> bedeutet, die Datenbank ist voll
         if (firstFreeIndex == -1)
-            throw new IllegalArgumentException("Die Datenbank ist voll!");
+            throw new IllegalArgumentException("The Database is full!");
         else
             // Ansonsten genau an dieser Stelle einen neuen User einfügen
             users[firstFreeIndex] = new User(newUser.username, newUser.password, newUser.email);
@@ -76,12 +76,12 @@ public class UserDB implements IUserPersistence {
                 return;
             }
         }
-        throw new IllegalArgumentException("Dieser User wurde nicht gefunden");
+        throw new IllegalArgumentException("This user was not found!");
     }
 
 
     public static void main(String[] args) {
-        System.out.println("Datenbank erstellen...");
+        System.out.println("Create Database...");
         UserDB db = new UserDB();
 
 

@@ -5,8 +5,6 @@ package de.fhswf.DBLK.DataManagement;
  * @author Sasha
  */
 
-import java.util.ArrayList;
-
 /**
  * Klasse für einen User
  */
@@ -28,27 +26,7 @@ public class User{
         this.username = username;
         this.password = password;
         this.email = email;
-    //    this.authCode = newCode();
-    }
-
-    /**
-     * Getter/Setter
-     */
-    public String getUsername(){
-        return this.username;
-    }
-
-    String getEmail(){
-        return this.email;
-    }
-
-    public String getPassword(){
-        return this.password;
-    }
-
-
-    void setPassword(String password){
-        this.password = password;
+        //this.authCode = newCode();
     }
 
     /**
