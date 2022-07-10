@@ -5,11 +5,14 @@ import de.fhswf.DBLK.DataManagement.User;
 import de.fhswf.DBLK.DataManagement.UserDB;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  * @author Sasha
  */
 public class Test {
+
+
 
     /**
      * Debugging
@@ -17,20 +20,26 @@ public class Test {
      * @param args
      */
     public static void main(String[] args) {
-
+        ArrayList<User> users = new ArrayList<User>();
         System.out.println("Datenbank erstellen...");
         UserDB db = new UserDB();
 
-        db.addUser(new User("Bonevski", "sb123", "Bonevski.sasha@fh-swf.de"));
-        db.addUser(new User("Knips", "ck123", "Knips.chris@fh-swf.de"));
-        db.addUser(new User("Lange", "sl123", "Lange.stefan@fh-swf.de"));
-        db.addUser(new User("Demir", "fd123", "Demir.firat@fh-swf.de"));
+        User b = new User("Bonevski", "sb123", "Bonevski.sasha@fh-swf.de");
+        User k = new User("Knips", "ck123", "Knips.chris@fh-swf.de");
+        User l = new User("Lange", "sl123", "Lange.stefan@fh-swf.de");
+        //User d = new User("Demir", "fd123", "Demir.firat@fh-swf.de");
+
+        users.add(b);
+        System.out.println(users.toString());
+        users.add(k);
+        users.add(l);
+        //users.add(d);
 
 
 
         System.out.println("=======DEBUGGING=======");
         System.out.println("----User hinzufügen----");
-        db.toString(); // Ausgabe in der Konsole
+        System.out.println(users.toString()); // Ausgabe in der Konsole
 
     }
 }

@@ -7,9 +7,14 @@ import java.util.ArrayList;
  */
 public interface IUserPersistence {
 
-    public void addUser(User newUser);
-    //public String getUsername();
-    public String getPassword();
+    void printMe();
 
-    ArrayList<User> getUsers();
+    public void addUser(User newUser);
+
+
+    void removeUser(String username);
+    //public String getUsername();
+   // public String getPassword();
+
+    //ArrayList<User> getUsers();
 }

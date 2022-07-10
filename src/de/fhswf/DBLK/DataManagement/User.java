@@ -8,15 +8,15 @@ package de.fhswf.DBLK.DataManagement;
 import java.util.ArrayList;
 
 /**
- * Klasse für ein User
+ * Klasse für einen User
  */
-public class User implements IUserPersistence{
+public class User{
 
-    private static String username;
-    private static String email;
-    private static String password;
-    private int authCode;
-    private static String role; //Admin oder User
+    String username;
+    String email;
+    String password;
+    //int authCode;
+    //String role; //Admin oder User
 
     /**
      * Konstruktor User
@@ -46,10 +46,6 @@ public class User implements IUserPersistence{
         return this.password;
     }
 
-    @Override
-    public ArrayList<User> getUsers() {
-        return null;
-    }
 
     void setPassword(String password){
         this.password = password;
@@ -73,8 +69,8 @@ public class User implements IUserPersistence{
     /**
      * Gibt den anzulegenden User aus
      */
-    public String toString() {
-        return "Username: " + username + " | Passwort: " + password + " | Email: " + email;
+    public void printMe() {
+        System.out.println("Username: " + username + " | Passwort: " + password + " | Email: " + email);
     }
 
     /**
@@ -97,11 +93,7 @@ public class User implements IUserPersistence{
      */
     public static void main(String[] args){
         User user = new User("Bonevski", "Test", "Bonevski.sasha@fh-swf.de");
-        user.toString();
+        user.printMe();
     }
 
-    @Override
-    public void addUser(User newUser) {
-
-    }
 }
