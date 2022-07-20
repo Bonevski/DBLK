@@ -17,7 +17,6 @@ public class BookingManager implements IRBS {
     protected Date[] days;
     protected ArrayList<Integer> planPerDay = new ArrayList<Integer>();
 
-
     /**
      * Password check if password is valid or not
      * Passwort muss 8-15 Zeichen lang sein, Groß- und Kleinbuchstaben
@@ -27,6 +26,7 @@ public class BookingManager implements IRBS {
      * @param password
      * @return
      */
+
     public static boolean isValid(String password) {
 
         // Passwort Check ob es gültig ist
@@ -116,12 +116,14 @@ public class BookingManager implements IRBS {
         if (option == JOptionPane.OK_OPTION) {
             if (isValid(password.getText())) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
+                subMenue();
             } else {
                 JOptionPane.showMessageDialog(null, "Login failed!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 login();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Login canceled!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            mainMenue();
         }
     }
 
@@ -129,10 +131,7 @@ public class BookingManager implements IRBS {
      * User wird hier erstellt
      * Überprüfung des Passworts plus E-mail
      */
-    /*
-     Fehler: Nach erfolgreichem User erstellen und aufrufen von mainMenue()
-     kommt nach Drücken des Cancel Buttons trotzdem Fehler
-     */
+
     public static void createUser() {
 
         // DB erstellen
@@ -165,7 +164,7 @@ public class BookingManager implements IRBS {
                         // User in die DB einfügen
                         db.addUser(new User(username.getText(), password.getText(), email.getText()));
                         // Testausgabe ob der User angelegt wurde
-                        // db.printMe(); --> User wird in die DB eingefügt
+                        // db.printMe(); //--> User wird in die DB eingefügt
                         mainMenue();
                     } else {
                         JOptionPane.showMessageDialog(null, "Wrong email!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -178,6 +177,7 @@ public class BookingManager implements IRBS {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Creating User canceled", "ERROR", JOptionPane.ERROR_MESSAGE);
+            mainMenue();
         }
 
     }
@@ -215,10 +215,8 @@ public class BookingManager implements IRBS {
 
         if (choose.contains("1")) {
             login();
-            subMenue();
         } else if (choose.contains("2")) {
             createUser();
-            subMenue();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect!", "ERROR", JOptionPane.ERROR_MESSAGE);
             mainMenue();

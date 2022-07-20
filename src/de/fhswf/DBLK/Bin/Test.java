@@ -35,6 +35,9 @@ public class Test {
         users.add(l);
         //users.add(d);
 
+        // Arraylist benötigt
+        boolean itemExists = users.stream().anyMatch(c -> c.equals(b));
+        System.out.println(itemExists);
 
 
         System.out.println("=======DEBUGGING=======");
