@@ -7,11 +7,12 @@ package de.fhswf.DBLK.DataManagement;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Scanner;
 
-public class RoomDB implements IRoomPersistence {
+
+public class RoomDB implements IRoomPersistence, Serializable {
 
 
     /**
@@ -20,7 +21,7 @@ public class RoomDB implements IRoomPersistence {
     //create ArrayList of rooms
     private ArrayList<Room> roomList;
     // protected String[] rooms;  // not needed --> we will use an ArrayList
-    Scanner sc;
+
 
 
     /**
@@ -29,7 +30,6 @@ public class RoomDB implements IRoomPersistence {
      */
     public RoomDB() {
         this.roomList = new ArrayList<Room>();
-        sc = new Scanner(System.in);
     }
 
 

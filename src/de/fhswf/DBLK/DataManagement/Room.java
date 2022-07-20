@@ -1,12 +1,14 @@
 package de.fhswf.DBLK.DataManagement;
 
+import java.io.Serializable;
+
 /**
  * @author Christoph
  */
 
 
 
-public class Room {
+public class Room implements Serializable {
 
 
 

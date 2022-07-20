@@ -6,20 +6,14 @@ import de.fhswf.DBLK.DataManagement.Room;
 import de.fhswf.DBLK.DataManagement.RoomDB;
 
 //exceptions
-import java.io.File;  //?
-import java.io.IOException;
-import java.io.FileNotFoundException;  //?
+import java.io.*;
 
 //file save
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 //file load
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 
 
-public class TestStoreLoadFiles {
+public class TestStoreLoadFiles implements Serializable {
 
     /**
      * @author Christoph
@@ -38,8 +32,9 @@ public class TestStoreLoadFiles {
         //store file
 
         //create file
-        try (FileOutputStream fosroomdb = new FileOutputStream("RoomDB.txt");
-             ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb)) {
+        try {
+                FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
+             ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
 
             // create a new room object
             //Room h105 = new Room("H105"); //creation takes place below
@@ -52,11 +47,11 @@ public class TestStoreLoadFiles {
             blub.addRoom(new Room("h105")); //
 
             // write object to file
-            oosroomdb.writeObject(blub);
+            oosroomdb.writeObject(blub); //toString zum schreiben
 
 
 //open file
-            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.txt"));
+            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
             ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
 
             // Read objects
@@ -69,7 +64,8 @@ public class TestStoreLoadFiles {
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
-        } catch (IOException e) {  //error here
+        } catch (IOException e) {
+            System.out.println(e);
             System.out.println("Error initializing stream");
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
