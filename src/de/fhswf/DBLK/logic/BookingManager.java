@@ -1,7 +1,7 @@
-package de.fhswf.DBLK.Logic;
+package de.fhswf.DBLK.logic;
 
-import de.fhswf.DBLK.DataManagement.User;
-import de.fhswf.DBLK.DataManagement.UserDB;
+import de.fhswf.DBLK.datamanagement.User;
+import de.fhswf.DBLK.datamanagement.UserDB;
 
 
 import javax.swing.*;

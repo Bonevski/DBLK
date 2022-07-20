@@ -1,7 +1,7 @@
-package de.fhswf.DBLK.UI;
+package de.fhswf.DBLK.ui;
 
 
-import static de.fhswf.DBLK.Logic.BookingManager.*;
+import static de.fhswf.DBLK.logic.BookingManager.*;
 
 /**
  * @author Sasha

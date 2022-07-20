@@ -1,4 +1,4 @@
-package de.fhswf.DBLK.DataManagement;
+package de.fhswf.DBLK.datamanagement;
 
 
 /**

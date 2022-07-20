@@ -1,6 +1,4 @@
-package de.fhswf.DBLK.DataManagement;
-
-import java.util.ArrayList;
+package de.fhswf.DBLK.datamanagement;
 
 /**
  * @author Sasha

@@ -1,10 +1,9 @@
-package de.fhswf.DBLK.Bin;
+package de.fhswf.DBLK.bin;
 
 
-import de.fhswf.DBLK.DataManagement.User;
-import de.fhswf.DBLK.DataManagement.UserDB;
+import de.fhswf.DBLK.datamanagement.User;
+import de.fhswf.DBLK.datamanagement.UserDB;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 /**

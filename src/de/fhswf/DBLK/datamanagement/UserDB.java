@@ -1,10 +1,5 @@
-package de.fhswf.DBLK.DataManagement;
+package de.fhswf.DBLK.datamanagement;
 
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Sasha

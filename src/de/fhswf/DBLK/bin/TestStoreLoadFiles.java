@@ -1,9 +1,9 @@
-package de.fhswf.DBLK.Bin;
+package de.fhswf.DBLK.bin;
 
 
 
-import de.fhswf.DBLK.DataManagement.Room;
-import de.fhswf.DBLK.DataManagement.RoomDB;
+import de.fhswf.DBLK.datamanagement.Room;
+import de.fhswf.DBLK.datamanagement.RoomDB;
 
 //exceptions
 import java.io.*;
