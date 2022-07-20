@@ -1,6 +1,11 @@
 package de.fhswf.DBLK.DataManagement;
 
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author Sasha
  */
@@ -30,6 +35,7 @@ public class UserDB implements IUserPersistence {
         }
     }
 
+
     /**
      * Fügt einen neuen User dem Array hinzu
      * Hier: leider ohne überprüfung ob Doppelregistrierung
@@ -39,22 +45,31 @@ public class UserDB implements IUserPersistence {
     @Override
     public void addUser(User newUser) {
 
-        int firstFreeIndex = -1;
-        // Im Array wird das erste freie Feld gesucht
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == null) {
-                // Gefunden!
-                firstFreeIndex = i;
-                break;
+        //List<User> list = Arrays.asList(users);
+
+        // Wenn der User bereits existiert Fehlermeldung
+        //if (list.contains(newUser)) {
+        //    System.out.println("User existiert bereits!");
+            //JOptionPane.showMessageDialog(null, "This User already exists!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        //}else {
+            int firstFreeIndex = -1;
+            // Im Array wird das erste freie Feld gesucht
+            for (int i = 0; i < users.length; i++) {
+                if (users[i] == null) {
+                    // Gefunden!
+                    firstFreeIndex = i;
+                    break;
+                }
             }
-        }
-        // Wenn firstFreeIndex immernoch -1 ist, wurde kein freies Feld
-        // gefunden -> bedeutet, die Datenbank ist voll
-        if (firstFreeIndex == -1)
-            throw new IllegalArgumentException("The Database is full!");
-        else
-            // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            users[firstFreeIndex] = new User(newUser.username, newUser.password, newUser.email);
+            // Wenn firstFreeIndex immer noch -1 ist, wurde kein freies Feld
+            // gefunden -> bedeutet, die Datenbank ist voll
+            if (firstFreeIndex == -1)
+                throw new IllegalArgumentException("The Database is full!");
+            else
+                // Ansonsten genau an dieser Stelle einen neuen User einfügen
+                users[firstFreeIndex] = new User(newUser.username, newUser.password, newUser.email);
+        //}
+
     }
 
 
@@ -84,15 +99,24 @@ public class UserDB implements IUserPersistence {
         System.out.println("Create Database...");
         UserDB db = new UserDB();
 
+        User b = new User("Bonevski", "sb123", "Bonevski.sasha@fh-swf.de");
+        User l = new User("Lange", "sl123", "Lange.stefan@fh-swf.de");
+        User k = new User("Knips", "ck123", "Knips.chris@fh-swf.de");
+        User d = new User("Demir", "fd123", "Demir.firat@fh-swf.de");
 
-        db.addUser(new User("Knips", "ck123", "Knips.chris@fh-swf.de"));
-        db.addUser(new User("Lange", "sl123", "Lange.stefan@fh-swf.de"));
-        db.addUser(new User("Demir", "fd123", "Demir.firat@fh-swf.de"));
-        db.addUser(new User("Bonevski", "sb123", "Bonevski.sasha@fh-swf.de"));
 
+
+        db.addUser(b);
+        db.addUser(l);
+        db.addUser(k);
+        db.addUser(d);
         db.printMe();
+
+        System.out.println("Remove...");
         db.removeUser("Bonevski");
         db.printMe();
+        System.out.println("Check if the User already exists...");
+        db.addUser(l);
     }
 
 }
