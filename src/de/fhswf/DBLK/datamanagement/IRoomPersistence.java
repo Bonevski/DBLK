@@ -9,6 +9,6 @@ public interface IRoomPersistence {
 //Methods
 public void addRoom(Room newRoom);
 public void deleteRoom (String roomName);
-public ArrayList getRoomList();  // possible not usable like this
+public Room[] getRoomList();  // possible not usable like this
 
 }

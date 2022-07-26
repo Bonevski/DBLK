@@ -12,7 +12,7 @@ public class Room implements Serializable {
 
 
 
-    private String roomName;
+    String roomName;
 
 
 
@@ -39,10 +39,6 @@ public class Room implements Serializable {
         return roomName;
     }
 
-
-    public void printMe() {
-        System.out.println("Raum: " + roomName);
-    }
 
     /**
      * only for TestStoreLoadFiles

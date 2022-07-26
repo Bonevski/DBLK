@@ -6,7 +6,6 @@ package de.fhswf.DBLK.datamanagement;
  */
 
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,18 +17,16 @@ public class RoomDB implements IRoomPersistence, Serializable {
     /**
      * variables
      */
-    //create ArrayList of rooms
-    private ArrayList<Room> roomList;
-    // protected String[] rooms;  // not needed --> we will use an ArrayList
-
+    //create Array of rooms
+    private Room[] roomList;
 
 
     /**
      * constructor roomList
-     * (creates empty list of rooms)
+     * (creates empty Array with space for 500 rooms)
      */
     public RoomDB() {
-        this.roomList = new ArrayList<Room>();
+        roomList = new Room[500];
     }
 
 
@@ -40,14 +37,41 @@ public class RoomDB implements IRoomPersistence, Serializable {
      */
     @Override
     public void addRoom(Room newRoom) {
+        //List<User> list = Arrays.asList(users);
+        // if room already exist throw error
+        //if (list.contains(newUser)) {
+        //    System.out.println("User existiert bereits!");
+        //JOptionPane.showMessageDialog(null, "This User already exists!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        //}else {
+        int firstFreeIndex = -1;
+        // first free space in array
+        for (int i = 0; i < roomList.length; i++) {
+            if (roomList[i] == null) {
+                // found
+                firstFreeIndex = i;
+                break;
+            }
+        }
+        // If  firstFreeIndex still = -1 --> Database is full
+        if (firstFreeIndex == -1)
+            throw new IllegalArgumentException("The Database is full!");
+        else
+            // Ansonsten genau an dieser Stelle einen neuen User einfügen
+            roomList[firstFreeIndex] = new Room(newRoom.roomName);
+        //}
+
+    }
+
+
+   /* old version with Arraylist
         // check, if room already exists
         if (this.roomList.contains(newRoom)) {
             // throw Exception, if room does already exist
-            throw new IllegalArgumentException("Der Raum exisitiert bereits!");
+            throw new IllegalArgumentException("Der Raum existiert bereits!");
         }
         this.roomList.add(newRoom);
     }
-
+*/
 
     /**
      * deletes room from room list.
@@ -57,7 +81,18 @@ public class RoomDB implements IRoomPersistence, Serializable {
 
     @Override
     public void deleteRoom(String roomName) {
+        for (int i = 0; i < roomList.length; i++) {
+            // check for null so not NullPointerExceptions gets thrown
+            if ((roomList[i] != null) && (roomList[i].roomName == roomName)) {
+                roomList[i] = null;
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Der Raum wurde nicht gefunden!");
+
+       /* old version with ArrayList
         //if(checkAdmin(username) == true) {
+
         Room room;
         // Iterator um die ArrayList zu durchlaufen
         // Zeiger der die Elemente einer Menge durchläuft
@@ -76,6 +111,9 @@ public class RoomDB implements IRoomPersistence, Serializable {
         //}else{
         //    System.out.println("No Permissions!");
         //}
+        */
+
+
     }
 
 
@@ -83,13 +121,16 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * returns created room   //toString alternative?
      * (data control)
      */
-    public void printMe() {
-        for (Room u : roomList) {
-            // Felder im Array, die keinen Eintrag haben, werden ignoriert
-            if (u != null) {
-                u.printMe();
+    @Override
+    public String toString() {
+        String output = "";
+        for (int i = 0; i < roomList.length; i++) {
+            // check for null so not NullPointerExceptions gets thrown and empty slots get jumped
+            if (roomList[i] != null) {
+                output += roomList[i] + "\n";
             }
         }
+        return ("RaumListe: " + output);
     }
 
 
@@ -97,11 +138,9 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * access to roomList from interface
      */
     @Override
-    public ArrayList getRoomList() {
+    public Room[] getRoomList() {
         return roomList;
     }
-
-
 
 
 }//class

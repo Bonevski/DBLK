@@ -1,7 +1,6 @@
 package de.fhswf.DBLK.bin;
 
 
-
 import de.fhswf.DBLK.datamanagement.Room;
 import de.fhswf.DBLK.datamanagement.RoomDB;
 
@@ -29,12 +28,24 @@ public class TestStoreLoadFiles implements Serializable {
     public static void main(String[] args) {
 
 
-        //store file
-
-        //create file
         try {
-                FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
-             ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
+
+
+//load file
+            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
+            ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
+
+            // Read objects
+            Room pr1 = (Room) oisroomdb.readObject();
+
+
+            System.out.println(pr1.toString());
+            // Room.printMe(pr1); s
+            // static not static error..
+
+            //create file
+            FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
+            ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
 
             // create a new room object
             //Room h105 = new Room("H105"); //creation takes place below
@@ -50,18 +61,6 @@ public class TestStoreLoadFiles implements Serializable {
             oosroomdb.writeObject(blub); //toString zum schreiben
 
 
-//open file
-            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
-            ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
-
-            // Read objects
-            Room pr1 = (Room) oisroomdb.readObject();
-
-
-            System.out.println(pr1.toString());
-            // Room.printMe(pr1); static not static error..
-
-
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -72,9 +71,62 @@ public class TestStoreLoadFiles implements Serializable {
             e.printStackTrace();
         }
 
+
+//main1 failed
+        /*
+        public static void main(String[] args) {
+
+
+            //create file
+            try {
+                FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
+                ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
+
+                // create a new room object
+                //Room h105 = new Room("H105"); //creation takes place below
+
+                //create new room list --> static / non static error if roomList entered through main
+                RoomDB blub = new RoomDB();
+
+
+                // room is created and directly added into room list
+                blub.addRoom(new Room("h105")); //
+
+                // write object to file
+                oosroomdb.writeObject(blub); //toString zum schreiben
+
+
+//load file
+                FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
+                ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
+
+                // Read objects
+                Room pr1 = (Room) oisroomdb.readObject();
+
+
+                System.out.println(pr1.toString());
+                // Room.printMe(pr1); s
+                // static not static error..
+
+
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found");
+            } catch (IOException e) {
+                System.out.println(e);
+                System.out.println("Error initializing stream");
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        /*
+
     }//main1
 
 /*
+
+
+       main2 raw
+        /*
     public static void main(String[] args) {
 
         Person p1 = new Person("John", 30, "Male");
@@ -116,4 +168,5 @@ public class TestStoreLoadFiles implements Serializable {
     }//main2
 
  */
+    }
 }
