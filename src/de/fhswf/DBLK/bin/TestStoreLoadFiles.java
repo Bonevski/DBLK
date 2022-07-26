@@ -4,12 +4,8 @@ package de.fhswf.DBLK.bin;
 import de.fhswf.DBLK.datamanagement.Room;
 import de.fhswf.DBLK.datamanagement.RoomDB;
 
-//exceptions
+
 import java.io.*;
-
-//file save
-
-//file load
 
 
 public class TestStoreLoadFiles implements Serializable {
@@ -20,9 +16,12 @@ public class TestStoreLoadFiles implements Serializable {
 
 
     /**
-     * write object to file
-     * https://attacomsian.com/blog/java-write-object-to-file
+     * ideas from
+     *  https://www.mrunix.de/forums/archive/index.php/t-31547.html
+     *  https://mkyong.com/java/how-to-read-and-write-java-object-to-a-file/
+     *  https://attacomsian.com/blog/java-write-object-to-file
      */
+
 
 
     public static void main(String[] args) {

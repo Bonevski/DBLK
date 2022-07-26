@@ -2,14 +2,21 @@ package de.fhswf.DBLK.datamanagement;
 
 /**
  * @author Christoph
- * lot of code taken from Sasha and refactored
+ * code for addRoom() and deleteRoom() taken from Sasha and refactored
  */
 
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class RoomDB implements IRoomPersistence, Serializable {
 
@@ -18,7 +25,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * variables
      */
     //create Array of rooms
-    private Room[] roomList;
+    public Room[] roomList;
 
 
     /**
@@ -60,7 +67,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
             roomList[firstFreeIndex] = new Room(newRoom.roomName);
         //}
 
-    }
+    }//end addRoom()
 
 
    /* old version with Arraylist
@@ -114,7 +121,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
         */
 
 
-    }
+    }//end deleteRoom()
 
 
     /**
@@ -130,8 +137,8 @@ public class RoomDB implements IRoomPersistence, Serializable {
                 output += roomList[i] + "\n";
             }
         }
-        return ("RaumListe: " + output);
-    }
+        return ("Liste aller Raeume:\n" + output);
+    }//end toString()
 
 
     /**
@@ -140,7 +147,58 @@ public class RoomDB implements IRoomPersistence, Serializable {
     @Override
     public Room[] getRoomList() {
         return roomList;
-    }
+    }//end getRoomList()
+
+
+    /**
+     * loads the current persistent roomList
+     */
+    @Override
+    public void loadRoomDatabase() {
+        try {
+            //load file
+            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
+            ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
+
+            // Read objects into existing empty array
+            roomList = (Room[]) oisroomdb.readObject();
+           // System.out.println(roomList.toString()); //testoutput
+
+
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Error initializing stream");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }//end loadRoomDatabase()
+
+
+    /**
+     * saves the current roomList persistent
+     */
+    @Override
+    public void saveRoomDatabase() {
+        try {
+
+            //create file
+            FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
+            ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
+
+
+            oosroomdb.writeObject(roomList); // write array of objects to file
+            //System.out.println(roomList.toString()); //testoutput
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Error initializing stream");
+        }
+
+    } //end saveRoomDatabase()
 
 
 }//class
