@@ -58,63 +58,29 @@ public class BookingDB implements IBookingDB, Serializable {
         if (firstFreeIndex == -1)
             throw new IllegalArgumentException("The Database is full!");
         else
-            // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID);
+            // at first empty spot create new booking
+            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID, newBooking.date, newBooking.roomName, newBooking.timeBlock, newBooking.userName);
         //}
 
     }//end addBooking()
 
 
-   /* old version with Arraylist
-        // check, if Booking already exists
-        if (this.bookingList.contains(newBooking)) {
-            // throw Exception, if Booking does already exist
-            throw new IllegalArgumentException("Der Raum existiert bereits!");
-        }
-        this.bookingList.add(newBooking);
-    }
-*/
-
     /**
      * deletes Booking from Booking list.
      *
-     * @param bookingName
+     * @param bookingID
      */
 
     @Override
-    public void deleteBooking(String bookingName) {
+    public void deleteBooking(String bookingID) {
         for (int i = 0; i < bookingList.length; i++) {
             // check for null so not NullPointerExceptions gets thrown
-            if ((bookingList[i] != null) && (bookingList[i].bookingName == bookingName)) {
+            if ((bookingList[i] != null) && (bookingList[i].bookingID == bookingID)) {
                 bookingList[i] = null;
                 return;
             }
         }
         throw new IllegalArgumentException("Der Raum wurde nicht gefunden!");
-
-       /* old version with ArrayList
-        //if(checkAdmin(username) == true) {
-
-        Booking room;
-        // Iterator um die ArrayList zu durchlaufen
-        // Zeiger der die Elemente einer Menge durchläuft
-        Iterator<Room> iter = this.bookingList.iterator();
-        // solange es noch Elemente in der ArrayList gibt...
-        while (iter.hasNext()) {
-            // ...sich den nächsten Eintrag nehmen...
-            room = iter.next();
-
-            // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
-            if (room.getbookingName().equals(bookingName)) {
-                // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
-                iter.remove();
-            } // if
-        } // while
-        //}else{
-        //    System.out.println("No Permissions!");
-        //}
-        */
-
 
     }//end deleteBooking()
 
@@ -187,7 +153,7 @@ public class BookingDB implements IBookingDB, Serializable {
 
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("BookingDB not found");
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("Error initializing stream");

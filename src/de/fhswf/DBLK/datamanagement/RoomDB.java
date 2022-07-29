@@ -63,7 +63,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
         if (firstFreeIndex == -1)
             throw new IllegalArgumentException("The Database is full!");
         else
-            // Ansonsten genau an dieser Stelle einen neuen User einfügen
+            // create new room at first empty slot in array
             roomList[firstFreeIndex] = new Room(newRoom.roomName);
         //}
 
