@@ -12,4 +12,5 @@ public class BookingDB implements IBookingDB{
     public String getBooking(Date date, String roomName, int timeBlock, String username) {
         return null;
     }
+
 }
