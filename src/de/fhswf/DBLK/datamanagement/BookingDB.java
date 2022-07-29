@@ -8,6 +8,16 @@ package de.fhswf.DBLK.datamanagement;
 
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class BookingDB implements IBookingDB, Serializable {
 
@@ -49,7 +59,7 @@ public class BookingDB implements IBookingDB, Serializable {
             throw new IllegalArgumentException("The Database is full!");
         else
             // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID, newBooking.date, newBooking.roomName, newBooking.timeBlock, newBooking.userName);
+            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID);
         //}
 
     }//end addBooking()
@@ -68,21 +78,46 @@ public class BookingDB implements IBookingDB, Serializable {
     /**
      * deletes Booking from Booking list.
      *
-     * @param bookingID
+     * @param bookingName
      */
 
     @Override
-    public void deleteBooking(String bookingID) {
+    public void deleteBooking(String bookingName) {
         for (int i = 0; i < bookingList.length; i++) {
             // check for null so not NullPointerExceptions gets thrown
-            if ((bookingList[i] != null) && (bookingList[i].bookingID == bookingID)) {
+            if ((bookingList[i] != null) && (bookingList[i].bookingName == bookingName)) {
                 bookingList[i] = null;
                 return;
             }
         }
         throw new IllegalArgumentException("Der Raum wurde nicht gefunden!");
 
+       /* old version with ArrayList
+        //if(checkAdmin(username) == true) {
+
+        Booking room;
+        // Iterator um die ArrayList zu durchlaufen
+        // Zeiger der die Elemente einer Menge durchläuft
+        Iterator<Room> iter = this.bookingList.iterator();
+        // solange es noch Elemente in der ArrayList gibt...
+        while (iter.hasNext()) {
+            // ...sich den nächsten Eintrag nehmen...
+            room = iter.next();
+
+            // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
+            if (room.getbookingName().equals(bookingName)) {
+                // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
+                iter.remove();
+            } // if
+        } // while
+        //}else{
+        //    System.out.println("No Permissions!");
+        //}
+        */
+
+
     }//end deleteBooking()
+
 
     /**
      * returns created Booking   //toString alternative?
