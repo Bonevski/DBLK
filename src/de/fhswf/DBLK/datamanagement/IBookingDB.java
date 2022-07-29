@@ -1,16 +1,15 @@
 package de.fhswf.DBLK.datamanagement;
-
-import java.util.Date;
-
+//* Stefan Lange nach Vorlage Chris Knips*
 
 public interface IBookingDB {
 
-public String setBooking(Date date, String roomName, int timeBlock,
-             String username);
-public String getBooking(Date date, String roomName, int timeBlock,
-             String username);
 
-static void setBooking(Date bookDate,String bookRoom, String bookUser){
 
-}
+    //Methods
+    public void addBooking(Booking newBooking);
+    public void deleteBooking (String Booking);
+    public Room[] getBookingList();  // possible not usable like this
+    public void loadBookingDatabase();
+    public void saveBookingDatabase();
+
 }
