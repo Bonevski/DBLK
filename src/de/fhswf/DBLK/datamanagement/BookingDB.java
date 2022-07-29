@@ -30,7 +30,7 @@ public class BookingDB implements IBookingDB, Serializable {
 
 
     /**
-     * constructor roomList
+     * constructor bookingList
      * (creates empty Array with space for 500 Bookings)
      */
     public BookingDB() {bookingList = new Booking[500];
@@ -38,22 +38,17 @@ public class BookingDB implements IBookingDB, Serializable {
 
 
     /**
-     * adds existing room to roomList
+     * adds existing Booking to bookingList
      *
-     * @param newRoom
+     * @param newBooking
      */
     @Override
-    public void addBooking(Room newRoom) {
-        //List<User> list = Arrays.asList(users);
-        // if room already exist throw error
-        //if (list.contains(newUser)) {
-        //    System.out.println("User existiert bereits!");
-        //JOptionPane.showMessageDialog(null, "This User already exists!", "ERROR", JOptionPane.ERROR_MESSAGE);
-        //}else {
-        int firstFreeIndex = -1;
+    public void addBooking(Booking newBooking) {
+
+                int firstFreeIndex = -1;
         // first free space in array
-        for (int i = 0; i < roomList.length; i++) {
-            if (roomList[i] == null) {
+        for (int i = 0; i < bookingList.length; i++) {
+            if (bookingList[i] == null) {
                 // found
                 firstFreeIndex = i;
                 break;
@@ -64,34 +59,34 @@ public class BookingDB implements IBookingDB, Serializable {
             throw new IllegalArgumentException("The Database is full!");
         else
             // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            roomList[firstFreeIndex] = new Room(newRoom.roomName);
+            bookingList[firstFreeIndex] = new Booking(newBooking.bookingName);
         //}
 
-    }//end addRoom()
+    }//end addBooking()
 
 
    /* old version with Arraylist
-        // check, if room already exists
-        if (this.roomList.contains(newRoom)) {
-            // throw Exception, if room does already exist
+        // check, if Booking already exists
+        if (this.bookingList.contains(newBooking)) {
+            // throw Exception, if Booking does already exist
             throw new IllegalArgumentException("Der Raum existiert bereits!");
         }
-        this.roomList.add(newRoom);
+        this.bookingList.add(newBooking);
     }
 */
 
     /**
-     * deletes room from room list.
+     * deletes Booking from Booking list.
      *
-     * @param roomName
+     * @param bookingName
      */
 
     @Override
-    public void deleteRoom(String roomName) {
-        for (int i = 0; i < roomList.length; i++) {
+    public void deleteBooking(String bookingName) {
+        for (int i = 0; i < bookingList.length; i++) {
             // check for null so not NullPointerExceptions gets thrown
-            if ((roomList[i] != null) && (roomList[i].roomName == roomName)) {
-                roomList[i] = null;
+            if ((bookingList[i] != null) && (bookingList[i].bookingName == bookingName)) {
+                bookingList[i] = null;
                 return;
             }
         }
@@ -100,17 +95,17 @@ public class BookingDB implements IBookingDB, Serializable {
        /* old version with ArrayList
         //if(checkAdmin(username) == true) {
 
-        Room room;
+        Booking room;
         // Iterator um die ArrayList zu durchlaufen
         // Zeiger der die Elemente einer Menge durchläuft
-        Iterator<Room> iter = this.roomList.iterator();
+        Iterator<Room> iter = this.bookingList.iterator();
         // solange es noch Elemente in der ArrayList gibt...
         while (iter.hasNext()) {
             // ...sich den nächsten Eintrag nehmen...
             room = iter.next();
 
             // ...und überprüfen ob der Name mit dem zu entfernenden Namen übereinstimmt...
-            if (room.getRoomName().equals(roomName)) {
+            if (room.getbookingName().equals(bookingName)) {
                 // ...wenn, dann diesen Eintrag aus der ArrayList entfernen
                 iter.remove();
             } // if
@@ -121,20 +116,20 @@ public class BookingDB implements IBookingDB, Serializable {
         */
 
 
-    }//end deleteRoom()
+    }//end deleteBooking()
 
 
     /**
-     * returns created room   //toString alternative?
+     * returns created Booking   //toString alternative?
      * (data control)
      */
     @Override
     public String toString() {
         String output = "";
-        for (int i = 0; i < roomList.length; i++) {
+        for (int i = 0; i < bookingList.length; i++) {
             // check for null so not NullPointerExceptions gets thrown and empty slots get jumped
-            if (roomList[i] != null) {
-                output += roomList[i] + "\n";
+            if (bookingList[i] != null) {
+                output += bookingList[i] + "\n";
             }
         }
         return ("Liste aller Raeume:\n" + output);
@@ -142,27 +137,27 @@ public class BookingDB implements IBookingDB, Serializable {
 
 
     /**
-     * access to roomList from interface
+     * access to bookingList from interface
      */
     @Override
-    public Room[] getRoomList() {
-        return roomList;
-    }//end getRoomList()
+    public Booking[] getbookingList() {
+        return bookingList;
+    }//end getbookingList()
 
 
     /**
-     * loads the current persistent roomList
+     * loads the current persistent bookingList
      */
     @Override
-    public void loadRoomDatabase() {
+    public void loadBookingDatabase() {
         try {
             //load file
-            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
-            ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
+            FileInputStream fisbookingdb = new FileInputStream(new File("BookingDB.dat"));
+            ObjectInputStream oisbookingdb = new ObjectInputStream(fisbookingdb);
 
             // Read objects into existing empty array
-            roomList = (Room[]) oisroomdb.readObject();
-            // System.out.println(roomList.toString()); //testoutput
+            bookingList = (Booking[]) oisbookingdb.readObject();
+            // System.out.println(bookingList.toString()); //testoutput
 
 
         } catch (IOException e) {
@@ -172,23 +167,23 @@ public class BookingDB implements IBookingDB, Serializable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }//end loadRoomDatabase()
+    }//end loadBookingDatabase()
 
 
     /**
-     * saves the current roomList persistent
+     * saves the current bookingList persistent
      */
     @Override
-    public void saveRoomDatabase() {
+    public void saveBookingDatabase() {
         try {
 
             //create file
-            FileOutputStream fosroomdb = new FileOutputStream(new File("RoomDB.dat"));
-            ObjectOutputStream oosroomdb = new ObjectOutputStream(fosroomdb);
+            FileOutputStream fosbookingdb = new FileOutputStream(new File("BookingDB.dat"));
+            ObjectOutputStream oosbookingdb = new ObjectOutputStream(fosbookingdb);
 
 
-            oosroomdb.writeObject(roomList); // write array of objects to file
-            //System.out.println(roomList.toString()); //testoutput
+            oosbookingdb.writeObject(bookingList); // write array of objects to file
+            //System.out.println(bookingList.toString()); //testoutput
 
 
         } catch (FileNotFoundException e) {
@@ -198,7 +193,7 @@ public class BookingDB implements IBookingDB, Serializable {
             System.out.println("Error initializing stream");
         }
 
-    } //end saveRoomDatabase()
+    } //end saveBookingDatabase()
 
 
 }//class
