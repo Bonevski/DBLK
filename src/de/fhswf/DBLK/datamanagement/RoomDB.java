@@ -7,8 +7,7 @@ package de.fhswf.DBLK.datamanagement;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+
 
 import java.io.File;
 import java.io.FileInputStream;
