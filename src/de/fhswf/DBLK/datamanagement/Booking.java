@@ -1,22 +1,25 @@
 package de.fhswf.DBLK.datamanagement;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Booking {
+public class Booking implements Serializable {
 
 /**
- * @author Christoph
+ * @author Christoph / Stefan
  */
 
     /**
      * variables
      */
     public static int uniqueID = 0;
-    public int bookingID; // unique ID reset when app starts again --> safe into Database --> load after restart
+    public String bookingID; // unique ID reset when app starts again --> safe into Database --> load after restart
     public int timeBlock;
     public Date date;
     public String roomName;
-    public String username;
+    public String userName;
+
+
 
     /**
      * constructor Booking
@@ -26,12 +29,12 @@ public class Booking {
      * @param timeBlock
      * @param username  later addable, for example seats
      */
-    public Booking(Date date, String roomName, int timeBlock, String username) {
+    public Booking(String bookingID,  Date date, String roomName, int timeBlock,  String username) {
+        this.bookingID = bookingID;
         this.date = date;
         this.roomName = roomName;
         this.timeBlock = timeBlock;
-        this.bookingID = uniqueID++;
-        this.username = username;
+        this.userName = username;
     }
 
 
@@ -46,7 +49,7 @@ public class Booking {
         return timeBlock;
     }
 
-    public int getBookingID(){
+    public String getBookingID(){
         return bookingID;
     }
 

@@ -1,8 +1,6 @@
 package de.fhswf.DBLK.datamanagement;
 //* Stefan Lange nach Vorlage Chris Knips*
 
-import java.io.Serializable;
-
 public interface IBookingDB {
 
 
