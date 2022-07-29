@@ -7,7 +7,8 @@ package de.fhswf.DBLK.datamanagement;
 
 
 import java.io.*;
-
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -156,7 +157,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
     public void loadRoomDatabase() {
         try {
             //load file
-            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.dat"));
+            FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.txt"));
             ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
 
             // Read objects into existing empty array

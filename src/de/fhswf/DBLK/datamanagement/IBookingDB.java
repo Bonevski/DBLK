@@ -3,7 +3,7 @@ package de.fhswf.DBLK.datamanagement;
 
 import java.io.Serializable;
 
-public interface IBookingDB Implements Serializable{
+public interface IBookingDB {
 
 
 
