@@ -54,5 +54,7 @@ public class Booking {
     public void printMe() {
         System.out.println("BuchungsID " + bookingID + "Datum: " + date + "Block: " + timeBlock);
     }
+    public static void main(String[] args) {
 
+    }
 }//class
