@@ -59,7 +59,7 @@ public class BookingDB implements IBookingDB, Serializable {
             throw new IllegalArgumentException("The Database is full!");
         else
             // Ansonsten genau an dieser Stelle einen neuen User einfügen
-            bookingList[firstFreeIndex] = new Booking(newBooking.bookingName);
+            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID);
         //}
 
     }//end addBooking()
@@ -140,7 +140,7 @@ public class BookingDB implements IBookingDB, Serializable {
      * access to bookingList from interface
      */
     @Override
-    public Booking[] getbookingList() {
+    public Booking[] getBookingList() {
         return bookingList;
     }//end getbookingList()
 

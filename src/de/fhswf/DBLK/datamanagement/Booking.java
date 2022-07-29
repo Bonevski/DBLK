@@ -11,12 +11,12 @@ public class Booking {
     /**
      * variables
      */
-    private static int uniqueID = 0;
-    private int bookingID; // unique ID reset when app starts again --> safe into Database --> load after restart
-    private int timeBlock;
-    private Date date;
-    private String roomName;
-    private String username;
+    public static int uniqueID = 0;
+    public int bookingID; // unique ID reset when app starts again --> safe into Database --> load after restart
+    public int timeBlock;
+    public Date date;
+    public String roomName;
+    public String username;
 
     /**
      * constructor Booking
