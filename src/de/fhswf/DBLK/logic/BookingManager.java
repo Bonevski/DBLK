@@ -1,5 +1,7 @@
 package de.fhswf.DBLK.logic;
 
+import de.fhswf.DBLK.datamanagement.Room;
+import de.fhswf.DBLK.datamanagement.RoomDB;
 import de.fhswf.DBLK.datamanagement.User;
 import de.fhswf.DBLK.datamanagement.UserDB;
 
@@ -262,10 +264,43 @@ public class BookingManager implements IRBS {
 
     }
 
-    @Override
-    public void createRoom(String roomName) {
 
-    }
+    /**
+     * @author Christoph
+     * creates a new Room, adds it automatically to local room database
+     * and saves the data into persistent room database
+     */
+    @Override
+    public void createRoom() {
+
+        // create db
+        RoomDB rooms = new RoomDB();
+
+        // create Textfield
+        JTextField roomName = new JTextField();
+
+        Object[] message = {"Raumname:", roomName};
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Raum erzeugen", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+
+            // Check if name is valid
+            if (isValid(roomName.getText())) {
+                // check if roomName has less than 7 characters
+                if (roomName.getText().length() <= 6) {
+                    JOptionPane.showMessageDialog(null, "Raumname ist zu lang", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    createRoom();
+                } else {
+                    // create room and add room to database
+                    rooms.addRoom(new Room(roomName.getText()));
+                    mainMenue();
+                }
+            }
+        }
+
+    } //end createRoom()
+
 
     @Override
     public void deleteRoom(String roomName) {

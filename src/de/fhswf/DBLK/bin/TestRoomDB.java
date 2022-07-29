@@ -34,7 +34,7 @@ public class TestRoomDB {
         System.out.println(testdb.toString());
 
 
-       testdb.loadRoomDatabase();
+       testdb2.loadRoomDatabase();
        System.out.println(testdb2.toString());
 
     }//end main
