@@ -2,7 +2,8 @@ package de.fhswf.DBLK.datamanagement;
 
 /**
  * @author Stefan
- * code for addRoom() and deleteRoom() taken from Sasha and refactored
+ * code taken from Chris and modified for Booking instead of Rooms
+ * Thx Chris, i owe you one
  */
 
 
@@ -18,22 +19,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class RoomDB implements IRoomPersistence, Serializable {
+public class BookingDB implements IBookingDB, Serializable {
 
 
     /**
      * variables
      */
-    //create Array of rooms
-    public Room[] roomList;
+    //create Array of Bookings
+    public Booking[] bookingList;
 
 
     /**
      * constructor roomList
-     * (creates empty Array with space for 500 rooms)
+     * (creates empty Array with space for 500 Bookings)
      */
-    public RoomDB() {
-        roomList = new Room[500];
+    public BookingDB() {bookingList = new Booking[500];
     }
 
 
@@ -43,7 +43,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * @param newRoom
      */
     @Override
-    public void addRoom(Room newRoom) {
+    public void addBooking(Room newRoom) {
         //List<User> list = Arrays.asList(users);
         // if room already exist throw error
         //if (list.contains(newUser)) {
