@@ -1,6 +1,8 @@
 package de.fhswf.DBLK.datamanagement;
 
 
+import java.io.*;
+
 /**
  * @author Sasha
  */
@@ -88,6 +90,58 @@ public class UserDB implements IUserPersistence {
         }
         throw new IllegalArgumentException("This user was not found!");
     }
+
+    /**
+     * @author Christoph
+     * loads the current persistent users
+     */
+    @Override
+    public void loadUserDatabase() {
+        try {
+            //load file
+            FileInputStream fisuserdb = new FileInputStream(new File("UserDB.txt"));
+            ObjectInputStream oisuserdb = new ObjectInputStream(fisuserdb);
+
+            // Read objects into existing empty array
+            users = (User[]) oisuserdb.readObject();
+            // System.out.println(roomList.toString()); //testoutput
+
+
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Error initializing stream");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }//end loadUserDatabase()
+
+    /**
+     * @author Christoph
+     * saves the current users persistent
+     */
+    @Override
+    public void saveUserDatabase() {
+        try {
+
+            //create file
+            FileOutputStream fosuserdb = new FileOutputStream(new File("UserDB.dat"));
+            ObjectOutputStream oosuserdb = new ObjectOutputStream(fosuserdb);
+
+
+            oosuserdb.writeObject(users); // write array of objects to file
+            //System.out.println(roomList.toString()); //testoutput
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println("User file not found");
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Error initializing stream");
+        }
+    } //end saveRoomDatabase()
+
+
 
 
     public static void main(String[] args) {

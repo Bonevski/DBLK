@@ -11,6 +11,8 @@ public interface IUserPersistence {
 
 
     void removeUser(String username);
+    public void loadUserDatabase();
+    public void saveUserDatabase();
     //public String getUsername();
    // public String getPassword();
 

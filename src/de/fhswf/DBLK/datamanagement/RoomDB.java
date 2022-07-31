@@ -192,7 +192,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
 
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("Room file not found");
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("Error initializing stream");

@@ -11,7 +11,7 @@ public class BuchungTest implements IBookingDB {
     {
 
 
-        public ooking() {
+        public booking() {
             bookingList = new book[500];
         }
     }
