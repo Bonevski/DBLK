@@ -145,7 +145,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * access to roomList from interface
      */
     @Override
-    public Room[] getRoomList() {
+    public static Room[] getRoomList() {
         return roomList;
     }//end getRoomList()
 

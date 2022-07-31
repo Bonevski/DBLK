@@ -1,17 +1,20 @@
 package de.fhswf.DBLK.datamanagement;
-import de.fhswf.DBLK.bin.RoomDBTest;
+import de.fhswf.DBLK.datamanagement.RoomDB;
 
+import org.junit.Assertions;
+import org.Junit.jupiter.api.Test;
+import org.junit.jupiter.api;
 /**
  * @author Firat
  */
-public class BuchungTest implements IBookingDB {
-
+public class BuchungTest  {
+/*
         //Erstellen des Arrays der Buchungslisten
         public Booking[] bookingList;
     {
 
 
-        public booking() {
+        public BookingDB() {
             bookingList = new book[500];
         }
     }
@@ -38,30 +41,38 @@ public class BuchungTest implements IBookingDB {
             //}
 
         }//end addBooking()
-
+ */
     //Test vorgang
     public void testBuchung() {
-       public String ergebnis;
-        Raum testRoom = new Room("H105", 1, true);
-        Benutzer testUser = new User("Bonevski","sb123","Bonevski.sasha@fh-swf.de");
+        String ergebnis;
+        Room testRoom = new Room("H105");
+        User testUser = new User("Bonevski","sb123","Bonevski.sasha@fh-swf.de");
+        RoomDB testDB = new RoomDB();
 
-        assertEquals(true, RoomDBTest.getRoomlist()); //Bei positiver Eingabe, Anzeigen der Raumliste
-        assertEquals(0, testUser.getBooking).size()); //Welche Räume kann man Buchen
+
+        testDB.addRoom(testRoom);
+
+        assertEquals(testRoom, RoomDB.getRoomList()); //Bei positiver Eingabe, Anzeigen der Raumliste
+        /*
+        assertEquals(0, testUser.getBookingList).size()); //Welche Räume kann man Buchen
         String ergebnis = testUser.(testRoom);
         assertEquals(false, testRoom.getVerfuegbarkeit()); //nicht Gebuchte Räume anzeigen(Verfügbar)
         assertEquals("Sie haben den Raum H105 erfolgreich gebucht.", ergebnis);
-        assertEquals(1, testUser.getbookingList().size());//Einfügen des Benutzers bei erfolgreicher Buchung
+        assertEquals(1, testUser.getBookingList().size());//Einfügen des Benutzers bei erfolgreicher Buchung
+        */
     }
 
-    @Test
-    public void testStornieren() {
-        Raum testRoom = new Room("H105", true);
-        Benutzer testUser = new User("Sasha","sb123","Bonevski.sasha@fh-swf.de";
-        testNutzer.bucheRaum(testRoom); //Anzeigen der gebuchten Räume des Nutzers
-        String ergebnis = testUser.cancleRoom(testRoom);//entfernen der Buchung des Nutzers
+
+   /* public void testStornieren() {
+        Room testRoom = new Room("H105");
+        User testUser = new User("Sasha","sb123","Bonevski.sasha@fh-swf.de";
+        testUser.bucheRaum(testRoom); //Anzeigen der gebuchten Räume des Nutzers
+        String ergebnis = testUser.cancelRoom(testRoom);//entfernen der Buchung des Nutzers
         assertEquals("Sie haben die Buchung des Raumes " + testRoom.getName() + " erfolgreich storniert.", ergebnis); //Buchung wurde Storniert.
         assertEquals(0, testUser.getBooking().size());
-        assertEquals(true, testRoom.getBookinglist());
+        assertEquals(true, testRoom.getBookingList());
     }
+    */
+
 }
-}
+
