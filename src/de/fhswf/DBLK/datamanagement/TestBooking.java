@@ -1,11 +1,6 @@
 package de.fhswf.DBLK.datamanagement;
-import de.fhswf.DBLK.bin.TestRoomDB;
-import de.fhswf.DBLK.datamanagement.BookingDB;
-import de.fhswf.DBLK.datamanagement.Booking;
-import de.fhswf.DBLK.datamanagement.Room;
-import de.fhswf.DBLK.datamanagement.RoomDB;
-import de.fhswf.DBLK.datamanagement.IRoomPersistence;
-import de.fhswf.DBLK.datamanagement.IBookingDB;
+import de.fhswf.DBLK.bin.RoomDBTest;
+
 /**
  * @author Firat
  */
@@ -16,7 +11,7 @@ public class BuchungTest implements IBookingDB {
     {
 
 
-        public booking() {
+        public ooking() {
             bookingList = new book[500];
         }
     }
@@ -50,7 +45,7 @@ public class BuchungTest implements IBookingDB {
         Raum testRoom = new Room("H105", 1, true);
         Benutzer testUser = new User("Bonevski","sb123","Bonevski.sasha@fh-swf.de");
 
-        assertEquals(true, TestRoomDB.getRoomlist()); //Bei positiver Eingabe, Anzeigen der Raumliste
+        assertEquals(true, RoomDBTest.getRoomlist()); //Bei positiver Eingabe, Anzeigen der Raumliste
         assertEquals(0, testUser.getBooking).size()); //Welche Räume kann man Buchen
         String ergebnis = testUser.(testRoom);
         assertEquals(false, testRoom.getVerfuegbarkeit()); //nicht Gebuchte Räume anzeigen(Verfügbar)

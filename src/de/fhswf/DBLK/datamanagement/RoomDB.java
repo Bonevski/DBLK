@@ -197,7 +197,6 @@ public class RoomDB implements IRoomPersistence, Serializable {
             System.out.println(e);
             System.out.println("Error initializing stream");
         }
-
     } //end saveRoomDatabase()
 
 

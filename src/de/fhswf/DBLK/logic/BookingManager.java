@@ -304,6 +304,7 @@ public class BookingManager implements IRBS {
 
     @Override
     public void deleteRoom(String roomName) {
+        
 
-    }
+    }//end deleteRoom()
 }

@@ -8,7 +8,7 @@ import de.fhswf.DBLK.datamanagement.RoomDB;
 import java.io.*;
 
 
-public class TestStoreLoadFiles implements Serializable {
+public class StoreLoadFilesTest implements Serializable {
 
     /**
      * @author Christoph
