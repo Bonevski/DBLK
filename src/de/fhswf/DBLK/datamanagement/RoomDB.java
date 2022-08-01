@@ -25,7 +25,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * variables
      */
     //create Array of rooms
-    public Room[] roomList;
+    public static Room[] roomList;
 
 
     /**
@@ -145,7 +145,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
      * access to roomList from interface
      */
     @Override
-    public static Room[] getRoomList() {
+    public Room[] getRoomList() {
         return roomList;
     }//end getRoomList()
 
@@ -160,7 +160,7 @@ public class RoomDB implements IRoomPersistence, Serializable {
             FileInputStream fisroomdb = new FileInputStream(new File("RoomDB.txt"));
             ObjectInputStream oisroomdb = new ObjectInputStream(fisroomdb);
 
-            // Read objects into existing empty array
+            // read objects into existing empty array
             roomList = (Room[]) oisroomdb.readObject();
            // System.out.println(roomList.toString()); //testoutput
 

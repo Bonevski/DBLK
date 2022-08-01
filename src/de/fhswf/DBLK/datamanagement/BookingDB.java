@@ -59,7 +59,7 @@ public class BookingDB implements IBookingDB, Serializable {
             throw new IllegalArgumentException("The Database is full!");
         else
             // at first empty spot create new booking
-            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID, newBooking.date, newBooking.roomName, newBooking.timeBlock, newBooking.userName);
+            bookingList[firstFreeIndex] = new Booking(newBooking.bookingID, newBooking.date, newBooking.roomName, newBooking.timeBlock, newBooking.username);
         //}
 
     }//end addBooking()

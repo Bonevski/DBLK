@@ -17,46 +17,52 @@ public class Booking implements Serializable {
     public int timeBlock;
     public Date date;
     public String roomName;
-    public String userName;
-
+    public String username;
 
 
     /**
      * constructor Booking
      *
+     * @param bookingID
      * @param date
      * @param roomName
      * @param timeBlock
      * @param username  later addable, for example seats
      */
-    public Booking(String bookingID,  Date date, String roomName, int timeBlock,  String username) {
+    public Booking(String bookingID, Date date, String roomName, int timeBlock, String username) {
         this.bookingID = bookingID;
         this.date = date;
         this.roomName = roomName;
         this.timeBlock = timeBlock;
-        this.userName = username;
+        this.username = username;
     }
 
 
     /**
      * Getter/Setter
      */
+    public String getRoomName() {
+        return roomName;
+    }
+
+
     public Date getDate() {
         return date;
     }
 
-    public int getTimeBlock(){
+    public int getTimeBlock() {
         return timeBlock;
     }
 
-    public String getBookingID(){
+    public String getBookingID() {
         return bookingID;
     }
 
-
-    public void printMe() {
-        System.out.println("BuchungsID " + bookingID + "Datum: " + date + "Block: " + timeBlock);
+@Override
+    public String toString() {
+       return ("BuchungsID " + bookingID + "Datum: " + date + "Block: " + timeBlock);
     }
+
     public static void main(String[] args) {
 
     }

@@ -118,14 +118,14 @@ public class BookingManager implements IRBS {
         if (option == JOptionPane.OK_OPTION) {
             if (isValid(password.getText())) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
-                subMenue();
+                subMenu();
             } else {
                 JOptionPane.showMessageDialog(null, "Login failed!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 login();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Login canceled!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            mainMenue();
+            mainMenu();
         }
     }
 
@@ -167,7 +167,7 @@ public class BookingManager implements IRBS {
                         db.addUser(new User(username.getText(), password.getText(), email.getText()));
                         // Testausgabe ob der User angelegt wurde
                         // db.printMe(); //--> User wird in die DB eingefügt
-                        mainMenue();
+                        mainMenu();
                     } else {
                         JOptionPane.showMessageDialog(null, "Wrong email!", "ERROR", JOptionPane.ERROR_MESSAGE);
                         createUser();
@@ -179,39 +179,56 @@ public class BookingManager implements IRBS {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Creating User canceled", "ERROR", JOptionPane.ERROR_MESSAGE);
-            mainMenue();
+            mainMenu();
         }
 
     }
 
     /**
-     * SubMenü erstellt
-     * Auswahl zwischen den 3 Möglichkeiten
-     * Anzeigen | Buchen | Stornieren
+     * @author Sasha und Christoph
+     * SubMenü created
+     * 5 possible choices
+     * show booking | book | cancel booking | create room | delete room
      */
-    public static void subMenue() {
+    //TODO static issue f.e.
+    // Error: Non-static method  'createRoom()' cannot be referenced from a static context
+    // if made static Override does not work, because static method needs a body in the interface
+    // method create room
+    public static void subMenu() {
         String choose = JOptionPane.showInputDialog(null, "Please select an item:\n" +
-                "['1' -> Show Room | '2' ->  Book room | '3' -> Cancel room]");
+                "['1' -> Show Room | '2' ->  Book room | '3' -> Cancel room] | '4' -> Create room] | '5' -> delete room]");
         if (choose.contains("1")) {
             JOptionPane.showMessageDialog(null, "Show room:");
-            // Methode Show
+            //listAllRooms();
+            // method show
         } else if (choose.contains("2")) {
             JOptionPane.showMessageDialog(null, "Book room:");
-            // Methode Book
+            //bookRoom();
+            // method book
         } else if (choose.contains("3")) {
             JOptionPane.showMessageDialog(null, "Cancel room:");
-            // Methode Cancel
+            //cancelRoom();
+            // method cancel
+        } else if (choose.contains("4")) {
+            JOptionPane.showMessageDialog(null, "create room:");
+            // createRoom();
+
+        } else if (choose.contains("5")) {
+            JOptionPane.showMessageDialog(null, "delete room:");
+            //deleteRoom(); // same error as createRoom()
+            // method delete room
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            mainMenue();
+            mainMenu();
         }
     }
+
 
     /**
      * Hauptmenü erstellt
      * Auswahl zwischen User erstellen und Login
      */
-    public static void mainMenue() {
+    public static void mainMenu() {
         String choose = JOptionPane.showInputDialog(null, "Please select an item: \n '1' -> Login | '2' -> Create User");
         //int men = Integer.parseInt(aus);
 
@@ -221,18 +238,18 @@ public class BookingManager implements IRBS {
             createUser();
         } else {
             JOptionPane.showMessageDialog(null, "Incorrect!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            mainMenue();
+            mainMenu();
         }
     }
 
     public static void runRBS() {
-        mainMenue();
+        mainMenu();
 
     }
 
     public static void main(String[] args) {
         //mainMenue();
-        //subMenue();
+        //subMenu();
         //login();
         createUser();
 
@@ -241,6 +258,7 @@ public class BookingManager implements IRBS {
 
     @Override
     public String listAllRooms(Date date) {
+
         return null;
     }
 
@@ -254,27 +272,26 @@ public class BookingManager implements IRBS {
         return null;
     }
 
-    @Override
-    public String createAccount(String userName, String mail, String password) {
-        return null;
-    }
 
     @Override
-    public void loginAccount(String userName, String password) {
+    public void loginAccount() {
 
     }
+
 
 
     /**
      * @author Christoph
-     * creates a new Room, adds it automatically to local room database
+     * creates a new 'Room', adds it automatically to local room database
      * and saves the data into persistent room database
      */
+    //ToDo check for admin rights, non static issue in subMenu and other classes
     @Override
     public void createRoom() {
-
         // create db
         RoomDB rooms = new RoomDB();
+        //load persistent database
+        rooms.loadRoomDatabase();
 
         // create Textfield
         JTextField roomName = new JTextField();
@@ -289,22 +306,55 @@ public class BookingManager implements IRBS {
             if (isValid(roomName.getText())) {
                 // check if roomName has less than 7 characters
                 if (roomName.getText().length() <= 6) {
-                    JOptionPane.showMessageDialog(null, "Raumname ist zu lang", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Raumname darf nicht mehr als 7 Ziffern haben", "ERROR", JOptionPane.ERROR_MESSAGE);
                     createRoom();
                 } else {
-                    // create room and add room to database
+                    // create room, add room to database, save database persistent
                     rooms.addRoom(new Room(roomName.getText()));
-                    mainMenue();
+                    rooms.saveRoomDatabase();
+                    subMenu();
                 }
             }
         }
 
     } //end createRoom()
 
-
+    /**
+     * @author Christoph
+     * deletes an existing 'Room'from to local room database
+     * and saves the data into persistent room database
+     */
+    //ToDo check for admin rights, non static issue in subMenu and other classes
     @Override
-    public void deleteARoom(String roomName) {
+    public void deleteARoom() {
+        // create db
+        RoomDB rooms = new RoomDB();
+        //load persistent database
+        rooms.loadRoomDatabase();
 
+        // create Textfield
+        JTextField roomName = new JTextField();
 
-    }//end deleteRoom()
+        Object[] message = {"Raumname:", roomName};
+
+        int option = JOptionPane.showConfirmDialog(null, message, "Raum löschen", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+
+            // Check if name is valid
+            if (isValid(roomName.getText())) {
+                // check if roomName has less than 7 characters
+                if (roomName.getText().length() <= 6) {
+                    JOptionPane.showMessageDialog(null, "Raumname darf nicht mehr als 7 Ziffern haben", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    deleteARoom();
+                } else {
+                    // create room, add room to database, save database persistent
+                    rooms.deleteRoom(roomName.getText());
+                    rooms.saveRoomDatabase();
+                    subMenu();
+                }
+            }
+        }
+
+    }//end deleteARoom()
 }
